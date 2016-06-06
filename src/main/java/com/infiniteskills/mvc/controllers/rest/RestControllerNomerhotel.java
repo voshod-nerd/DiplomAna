@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import com.infiniteskills.mvc.helpclasses.Data;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -31,6 +33,11 @@ public class RestControllerNomerhotel {
     @Autowired(required = false)
     public void setService(NomerhotelRepository uService) {
         this.uService = uService;
+    }
+
+     @RequestMapping(value= "/{item}",method = RequestMethod.GET)
+    public Nomerhotel getFreeUnitList(@PathVariable Data zav) {
+        return uService.getFreeForReserve(zav.getDateb(), zav.getDatee(),zav.getTypenomerhotel(),zav.getTypenomerhotel());
     }
      
     

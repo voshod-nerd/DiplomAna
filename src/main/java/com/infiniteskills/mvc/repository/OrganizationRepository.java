@@ -24,4 +24,5 @@ import java.util.List;
     Organization update(Organization hot);
 
     Organization create(Organization hot);
+     Organization findOrganizationByName(String name);
 }

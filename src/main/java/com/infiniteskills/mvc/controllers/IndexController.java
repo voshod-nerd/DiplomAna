@@ -1,5 +1,6 @@
 package com.infiniteskills.mvc.controllers;
 
+import com.infiniteskills.mvc.entity.Employee;
 import com.infiniteskills.mvc.entity.Organization;
 import com.infiniteskills.mvc.entity.Program;
 import java.util.List;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.infiniteskills.mvc.repository.OrganizationRepository;
 import com.infiniteskills.mvc.repository.ProgramRepository;
+import com.infiniteskills.mvc.repository.UserRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {
 
     private OrganizationRepository organizationDAO;
     private ProgramRepository programDAO;
+    private UserRepository userDAO;
 
     @Autowired(required = false)
     public void setProgRepository(ProgramRepository progDAO) {
@@ -27,6 +32,11 @@ public class IndexController {
     @Autowired(required = false)
     public void setProgRepository(OrganizationRepository orgDAO) {
         this.organizationDAO = orgDAO;
+    }
+
+    @Autowired(required = false)
+    public void setUserRepository(UserRepository dao) {
+        this.userDAO = dao;
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -39,7 +49,7 @@ public class IndexController {
         return "public/reservation";
     }
 
-    @RequestMapping(value = "/regclient", method = RequestMethod.GET)
+    @RequestMapping(value = "/reg", method = RequestMethod.GET)
     public String registrationClient(ModelMap model) {
 
         List<Organization> lsOrg = organizationDAO.findAll();
@@ -55,18 +65,42 @@ public class IndexController {
 
         model.addAttribute("listOrg", lsOrg);
         model.addAttribute("listProg", lsProg);
-        return "public/registrationclient";
+        return "public/regclient";
 
     }
 
-    @RequestMapping(value = "/testreg",method = RequestMethod.GET)
-    public String testReg(Model model) {
-        return "public/testreg";
+    @RequestMapping(value = "/regsuc", method = RequestMethod.POST)
+    public String regsuc(@RequestParam("org") String org, @RequestParam("username") String log, @RequestParam("password") String pass, @RequestParam("fio") String fio) {
+
+        System.out.println(fio);
+        System.out.println(org);
+        System.out.println(log);
+
+        Employee emp = new Employee();
+        emp.setPassword(pass);
+        emp.setUsername(log);
+        emp.setEnabled(true);
+        emp.setRole("USER_ROLE");
+
+        Organization organ = organizationDAO.findOrganizationByName(org);
+        organ.setFiopredstavitel(fio);
+        organizationDAO.update(organ);
+
+        userDAO.create(emp);
+
+        return "public/regsuc";
     }
 
-    @RequestMapping(value = "/testsucreg",method = RequestMethod.GET)
-    public String TestSucReg(Model model) {
-        return "public/testsuccsesreg";
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String about(Model model) {
+        return "public/about";
     }
+
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public String contact(Model model) {
+        return "public/contact";
+    }
+
+   
 
 }

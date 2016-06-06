@@ -37,33 +37,22 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Мы предлагаем<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="themes">
                                 <li><a href="reservation">Бронирование номеров</a></li>
-                                <li class="divider"></li>
-                                <li><a href="../cerulean/">Отмена брони</a></li>
-                                <li class="divider"></li>
-                                <li><a href="../cosmo/">Специальное предложение</a></li> 
-                                <li><a href="testreg">Тестовая регистрация</a></li> 
+                                 <li><a href="reservation">Отмена бронирования</a></li>
+                                
+                               
+                                
                             </ul>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="regclient" target="_blank">Регистрация</a></li>
-                        <li><a href="" target="_blank">Контакты</a></li>
-                        <li><a href="" target="_blank">Об отелях</a></li>
-                        <li><a href="home" target="_blank">Корпоративный сайт</a></li>
-
-                        <li>
-                            <sec:authorize access="hasRole('admin')" >
-                                <a href="logout">Выйти</a>
-                            </sec:authorize>
-                            <sec:authorize access="hasRole('director')" >
-                                <a href="logout">Выйти</a>
-                            </sec:authorize>
-                        </li>
-
+                       
+                        <li><a href="contact" >Контакты</a></li>
+                        <li><a href="about" >Об нас</a></li>
+                        <li><a href="home" >Корпоративный сайт</a></li>
                         <li> 
                             <sec:authorize access="isAuthenticated()">
-                                <p>Ваш логин: <sec:authentication property="principal.username" /></p>
+                                   <a href="logout">Выйти</a>
                             </sec:authorize>
                         </li>
                     </ul>

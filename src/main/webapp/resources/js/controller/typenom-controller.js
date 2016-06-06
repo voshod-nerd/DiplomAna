@@ -10,7 +10,6 @@ App.controller('ControllerTN', ['$scope', 'ServicsTN',
             id: null,
             mest: '',
             type: ''
-         
         };
 
 

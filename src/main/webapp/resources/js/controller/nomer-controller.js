@@ -1,30 +1,51 @@
 'use strict';
-
-App.controller('Controller', ['$scope', 'Servics',
-    function ($scope, Servics) {
+App.controller('ControllerNomer', ['$scope', 'ServiceNomer',
+    function ($scope, ServiceNomer) {
         var self = this;
 
-        self.vis = 'none';
-        self.nameh = '';
-        self.loc = '';
+        self.block="none";
 
         self.unit = {
             id: null,
-            location: '',
-            name: ''
+            number: '',
+            ready: '',
+            idgostin: null,
+            typenomer: null
         };
 
 
+
+
+        self.data = {
+            dateb: '',
+            datee: '',
+            typenomerhotel: '',
+            idhotel: ''
+        };
 
 
         self.units = [];
-        self.showBlock = function () {
-            self.vis = 'inline-block';
+
+        self.fetchFreeU = function (data) {
+            ServiceNomer.fetchFreeU(data)
+                    .then(
+                            function (d) {
+                                self.units = d;
+                                alert(JSON.stringify(d));
+                            },
+                            function (errResponse) {
+                                console.error('Error while fetching U(controller)');
+                            }
+                    );
         };
 
 
+
+
+
+
         self.fetchAllU = function () {
-            Servics.fetchAllU()
+            ServiceNomer.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
@@ -39,7 +60,7 @@ App.controller('Controller', ['$scope', 'Servics',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            Servics.createU(unit)
+            ServiceNomer.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -49,7 +70,7 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
         self.updateU = function (unit) {
-            Servics.updateU(unit)
+            ServiceNomer.updateU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -59,7 +80,7 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
         self.deleteU = function (unit) {
-            Servics.deleteU(unit)
+            ServiceNomer.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -69,28 +90,19 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
 
-        self.addU = function ()
-        {
-            self.unit.name = self.nameh;
-            self.unit.location = self.loc;
-            self.createU(self.unit);
 
-
-
-        };
 
         self.edit = function (unit) {
-            console.log('Employee name to be edited', unit);
-            /*var department = (employee.department !== null) ?
-             JSON.stringify(employee.department) : null;
-             var post = (employee.post !== null) ?
-             JSON.stringify(employee.post) : null;
-             self.employee = employee;
-             */
-            self.unit=unit;
-            //self.unit.location = unit.location;
-            //;
-            //self.unit.name = unit.name;
+            console.log('Unit name to be edited', unit);
+            var tar = (unit.idtarif !== null) ?
+                    JSON.stringify(unit.idtarif) : null;
+            var pit = (unit.idpitanie !== null) ?
+                    JSON.stringify(unit.idpitanie) : null;
+
+
+            self.unit = unit;
+            self.unit.idtarif = tar;
+            self.unit.idpitanie = pit;
             $scope.myForm.$setDirty();
         };
 
@@ -98,26 +110,27 @@ App.controller('Controller', ['$scope', 'Servics',
         self.reset = function () {
             self.unit = {
                 id: null,
-                location: '',
-                name: '',
+                idtarif: null,
+                idpitanie: null,
+                sum: ''
             };
             $scope.myForm.$setPristine(); //reset Form
         };
 
         self.submit = function () {
-            // console.log('department - ' + self.employee.department);
-            /* var department = self.employee.department !== null ?
-             JSON.parse(self.employee.department) : null;
-             var post = self.employee.post !== null ?
-             JSON.parse(self.employee.post) : null;
-             */
-            //self.unit.location = department;
-            //self.unit.name = post;
+
+            var tar = self.unit.idtarif !== null ?
+                    JSON.parse(self.unit.idtarif) : null;
+            var pit = self.unit.idpitanie !== null ?
+                    JSON.parse(self.unit.idpitanie) : null;
+            alert(tar);
+            self.unit.idtarif = tar;
+            self.unit.idpitanie = pit;
             if (self.unit.id === null) {
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

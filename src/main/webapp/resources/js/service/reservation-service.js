@@ -1,5 +1,5 @@
 'use strict';
-app.factory('reservationService', ['$http', '$q', function($http, $q){
+App.factory('ControllerReserv', ['$http', '$q', function($http, $q){
 	return {
 		
 			fetchDepartment: function() {

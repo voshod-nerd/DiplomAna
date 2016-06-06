@@ -7,6 +7,7 @@ package com.infiniteskills.mvc.controllers.rest;
 
 import static com.infiniteskills.mvc.controllers.rest.RestControllerTypenomerhotel._PATH17;
 import com.infiniteskills.mvc.entity.Typenomerhotel;
+
 import com.infiniteskills.mvc.repository.TypeNomerHotelRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,17 @@ public class RestControllerTypenomerhotel {
     
      private TypeNomerHotelRepository uService;
      
+     
     @Autowired(required = false)
     public void setService(TypeNomerHotelRepository uService) {
         this.uService = uService;
     }
      
     
-     @RequestMapping(method = RequestMethod.GET)
+   
+    
+    
+    @RequestMapping(method = RequestMethod.GET)
     public List<Typenomerhotel> getUnitList() {
         return uService.findAll();
     }

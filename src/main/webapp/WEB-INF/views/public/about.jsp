@@ -1,7 +1,7 @@
 <%-- 
-    Document   : testsuccsesreg
-    Created on : 21.04.2016, 17:34:44
-    Author     : Соколов
+    Document   : about
+    Created on : 04.06.2016, 23:03:16
+    Author     : Олег
 --%>
 
 <%@page contentType="text/html" pageEncoding="windows-1251"%>

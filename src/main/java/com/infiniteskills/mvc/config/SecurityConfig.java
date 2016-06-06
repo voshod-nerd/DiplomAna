@@ -5,7 +5,7 @@
  */
 package com.infiniteskills.mvc.config;
 
-import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -50,6 +50,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/vc","/").permitAll()
                 .antMatchers("/home").hasRole("ADMIN") 
+                .antMatchers("/reservation").hasRole("USER")   
                 .and();
  
         http.formLogin()

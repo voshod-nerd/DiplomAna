@@ -1,7 +1,7 @@
 <%-- 
-    Document   : testreg
-    Created on : 21.04.2016, 17:35:23
-    Author     : Соколов
+    Document   : contact
+    Created on : 04.06.2016, 23:03:32
+    Author     : Олег
 --%>
 
 <%@page contentType="text/html" pageEncoding="windows-1251"%>

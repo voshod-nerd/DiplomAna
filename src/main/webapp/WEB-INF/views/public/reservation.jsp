@@ -1,73 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Бронирование номеров</title>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/js/jquery-2.2.2.min.js"></script>
-<!-- Bootstrap -->
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<!-- css code for slider  -->
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="resources/js/bootstrap.min.js" ></script>
-<!-- Fotorama -->
-<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB --> 
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="resources/js/jquery-2.2.2.min.js"></script>
+        <!-- Bootstrap -->
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+        <!-- css code for slider  -->
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="resources/js/bootstrap.min.js"></script>
+         <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB --> 
+       
 
 <!-- Angular JS -->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js" ></script>
 </head>
 
-<body ng-app="myapp" ng-init="fetchDepartment()" >
-<div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="../" class="navbar-brand">Главная</a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Мы предлагаем<span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="reservation">Бронирование номеров</a></li>
-                <li class="divider"></li>
-                <li><a href="../cerulean/">Отмена брони</a></li>
-                <li class="divider"></li>
-                <li><a href="../cosmo/">Специальное предложение</a></li>  
-              </ul>
-            </li>
-          </ul>
+<body ng-app="myApp"  >
+ <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="/vc" class="navbar-brand">Главная</a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Мы предлагаем<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                <li><a href="reservation">Бронирование номеров</a></li>
+                                 <li><a href="reservation">Отмена бронирования</a></li>
+                                
+                               
+                                
+                            </ul>
+                        </li>
+                    </ul>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="regclient" target="_blank">Регистрация</a></li>
-            <li><a href="" target="_blank">Контакты</a></li>
-            <li><a href="" target="_blank">Об отелях</a></li>
-              <li><a href="home" target="_blank">Корпоративный сайт</a></li>
-          </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                       
+                        <li><a href="contact" >Контакты</a></li>
+                        <li><a href="about" >Об нас</a></li>
+                        <li><a href="home" >Корпоративный сайт</a></li>
+                        <li> 
+                            <sec:authorize access="isAuthenticated()">
+                                    <a href="logout">Выйти</a> 
+                            </sec:authorize>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
    <br>
    <br>
    <br>
      
-<div class="container" style="background-color:#ADD8E6; border-radius: 15px;">
+<div class="container" ng-controller="ControllerReserv as ctrl" style="background-color:#ADD8E6; border-radius: 15px;">
 
-<div class="row">
+<div class="row"  >
 <div class="col-md-1"></div>
 <div class="col-md-10">
-<div ng-controller="reservationController">
 
 
-<h4>Забронируйте себе номер прямо сейчас!</h4>
+
+<h4 class="text-center">Забронируйте себе номер прямо сейчас!</h4>
 
 <h4>Правила бронирования номеров отеля.</h4>
 
@@ -78,52 +84,35 @@
 1. Оплата первых суток проживания. Вы можете оплатить стоимость одних или более суток проживания в офисе компании по адресу: Алматы, ул. Розыбакиева, 72а, салон 50.
 2. Гарантийное письмо от компании. Для корпоративных клиентов гостиницы достаточно отправить в отель заявку на бронирование в виде гарантийного письма. Гарантийное письмо должно содержать информацию о категории номера, дате прибытия, дате убытия, фамилии и имени гостя (гостей), контактную информацию по бронированию, а также текст о гарантии брони, реквизиты компании, подписи руководителя предприятия и главного бухгалтера. Пример текста заявки на гарантированное бронирование номера в гостинице: В отдел бронирования гостиницы “Рейкьявик” || Просим забронировать номер категории «одноместный стандартный» для г-на Иванова И.И. Дата прибытия: (число) (месяц) (год), дата отъезда: (число) (месяц) (год). Способ оплаты: (наличные/безналичный расчет/кредитная карта). В случае несвоевременной аннуляции (позднее, чем 72 часа до указанной в заявке даты заезда, либо незаезда по данной брони) компания (организационная форма)(название компании) гарантирует оплату стоимости 1 суток проживания по указанной брони.</p>
 
-<h4>Забронируйте прямо сейчас</h4>
 
-<h4>Выбор вида бронирования</h4>
-<select ng-change="SelectBron()"  class="form-control " name="selectVidBron"  ng-model="data.selectVidBron">
-<option value="1">Одиночное бронирование</option>
-<option value="2">Групповое бронирование</option>
-</select>
-
-
-<div style="display: {{brongroup}}" >
-<p>*Групповое бронироваие допускается только для номеров стандарт</p>
- 
-<label >Введите количество номеров для бронирования</label>
-<input type="text" class="form-control " ></input>
-<button ng-click="fetchDepartment()"  class="btn btn-primary">Проверить наличие свободных номеров</button>
-</div>
-
-
-
-<div style="display: {{broned}}">
+<div ng-controller="ControllerNomer as nomerctrl" >
  <label >Тип номера</label> 
-<select  ng-change="myFunc()"  class="form-control " name="singleSelect"  ng-model="data.singleSelect">
-  <option value="1">Эконом: 1-местный</option>
-  <option value="2">Эконом: 2-местный</option>
-  <option value="3">Стандарт: 2-местный</option>
-  <option value="4" >Люкс: 1-местный</option>
+ <div ng-controller="ControllerTN as depctrl">
+<select  ng-change="ctrl.myFunc()" ng-model="nomerctrl.data.typenomerhotel" name="select" ng-model="ctrl.select" class="form-control ">
+  <option ng-repeat="dep in depctrl.units" value="{{dep.id}}">{{dep.type+' '+dep.mest}}</option>
 </select>
-
+ </div>
+ 
+  <label >Гостиница</label> 
+ <div ng-controller="Controller as hctrl">
+<select  ng-model="nomerctrl.data.idhotel"  class="form-control ">
+  <option ng-repeat="u in hctrl.units" value="{{u.id}}">{{u.name}}</option>
+</select>
+ </div>
+ 
+ 
 
 <label >Дата заезда</label>
-<input type="date" name="dateIn"  ng-model="data.dateIn" class="form-control "  >
+<input type="date" name="dateIn"  ng-model="nomerctrl.data.dateb"  class="form-control"  >
 <label >Дата выезда</label>
-<input type="date"  class="form-control " name="dateOut"  ng-model="data.dateOut">
+<input type="date" ng-model="nomerctrl.data.datee" class="form-control " name="dateOut"  >
 <p></p>
-<button ng-click="checkfreenomer()" class="btn btn-primary">Проверить наличие</button>
-
-<br>
-<div style="display:{{blockreser}}">
-<label >Имя</label>
-<input type="text"  class="form-control "  name="name">
-<label >Фамилия</label>
-<input type="text"  class="form-control "  name="surname">
-</div>
+<button ng-click="nomerctrl.fetchFreeU(nomerctrl.data)" class="btn btn-primary">Проверить наличие свободных номеров</button>
 
 
-<div style="display:{{block1}}">
+
+
+<div style="display:{{ctrl.block1}}">
 <h4>Внутрений вид номера</h4>
 <div  class="fotorama" >
   <img src="resources/images/10.jpg">
@@ -157,7 +146,7 @@
 
 </div>
 
-<div style="display:{{block2}}">
+<div style="display:{{ctrl.block2}}">
 <h4>Внутрений вид номера</h4>
 <div  class="fotorama" >
   <img src="resources/images/10.jpg">
@@ -189,7 +178,7 @@
 
 </div>
 
-<div style="display:{{block3}}">
+<div style="display:{{ctrl.block3}}">
 <h4>Внутрений вид номера</h4>
 <div  class="fotorama" >
   <img src="resources/images/10.jpg">
@@ -217,7 +206,7 @@
 </div>
 
 
-<div style="display:{{block4}}">
+<div style="display:{{ctrl.block4}}">
 <h4>Внутрений вид номера</h4>
 <div  class="fotorama" >
   <img src="resources/images/10.jpg">
@@ -239,36 +228,44 @@
 </ul>
 </div>
 
+<div style="display:{{nomerctrl.block}}">
+    <p>Список свободных номеров</p>
+    <div class="tablecontainer">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Номер</th>
+                                 <th>Гостиница</th>
+                                  <th>Тип номера</th>
+                                <th width="20%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="e in nomerctrl.units">
+                                <td><span ng-bind="e.number"></span></td>
+                                <td><span ng-bind="e.idgostin.name"></span></td>
+                                <td><span ng-bind="e.typenomerhotel.type + e.typenomerhotel.mest "></span></td>
+                                
+
+                                <td>
+                                    <button type="button" ng-click="nomerctrl.edit(e)" 
+                                            class="btn btn-success custom-width"
+                                            style=" width: 90px !important;">Забронировать</button>  
+                                   
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 </div>
 
+
+
+</div>
+
+
 </div>
 </div>
-</div>
-
-<table class="table table-hover" >
-                      <thead>
-                          <tr>
-                              <th>No</th>
-                              <th>Dept No</th>
-                              <th>Dept Name</th>
-                              <th>Location</th>
-                              
-                          </tr>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="d in departments">
-                              <td><span ng-bind="d.deptId"></span></td>
-                              <td><span ng-bind="d.deptName"></span></td>
-                              <td><span ng-bind="d.deptNo"></span></td>
-                              <td><span ng-bind="d.location"></span></td>
-                      
-                      </tbody>
-                      </table>
- {{message}}
-
-
-
-
 
 
 <div class="col-md-1"></div>
@@ -280,17 +277,20 @@
 </div>
 <br>
 <!-- Низ страницы -->
-<div class="navbar navbar-default navbar-bottom"></div>
-
+<div class="navbar navbar-default navbar-bottom">
+    
+</div>
     <!-- Modules -->
-    <script src="resources/js/app/reservation-app.js"></script>
+    <script src="resources/js/app/hotels-app.js"></script>
        <!-- Service -->
      <script src="resources/js/service/reservation-service.js"></script>
+     <script src="resources/js/service/typenom-service.js"></script>
+     <script src="resources/js/service/typenom-service.js"></script>
+      <script src="resources/js/service/hotels-service.js"></script>
     <!-- Controllers -->
     <script src="resources/js/controller/reservation-controller.js"></script>
-    <!-- Directives -->
-    <script src="resources/js/directive/reservation-directive.js"></script>
-  
-    
+    <script src="resources/js/controller/typenom-controller.js"></script>
+    <script src="resources/js/controller/hotels-controller.js"></script>
+   
 </body>
 </html>
