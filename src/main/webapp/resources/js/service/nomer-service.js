@@ -20,7 +20,7 @@ App.factory('ServiceNomer', ['$http', '$q', function ($http, $q) {
             },
             
             fetchFreeU: function (unit) {
-                return $http.get('/vc/restnomerhotel/item',JSON.stringify(unit))
+                return $http.post('/vc/restnomerhotel/items',JSON.stringify(unit))
                         .then(
                                 function (response) {
                                     return response.data;

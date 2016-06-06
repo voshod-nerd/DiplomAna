@@ -35,8 +35,9 @@ public class RestControllerNomerhotel {
         this.uService = uService;
     }
 
-     @RequestMapping(value= "/{item}",method = RequestMethod.GET)
-    public Nomerhotel getFreeUnitList(@PathVariable Data zav) {
+     @RequestMapping(method = RequestMethod.POST,value= "/{items}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Nomerhotel getFreeUnitList(@RequestBody Data zav) {
+        System.out.println(zav.getTypenomerhotel());
         return uService.getFreeForReserve(zav.getDateb(), zav.getDatee(),zav.getTypenomerhotel(),zav.getTypenomerhotel());
     }
      
