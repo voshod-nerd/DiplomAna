@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.repository;
 
+import com.infiniteskills.mvc.entity.Client;
 import com.infiniteskills.mvc.entity.Tarifz;
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface TarifzRepository {
     Tarifz save(Tarifz rab);
 
     void delete(Tarifz rab);
+    
+    Tarifz getTarifByClient(Client cl);
 }

@@ -50,6 +50,9 @@ public class Nomerhotel implements Serializable {
     @OneToMany(mappedBy = "idnomer")
     @JsonIgnore
     private Collection<Bron> bronCollection;
+    @OneToMany(mappedBy = "idnomer")
+    @JsonIgnore
+    private Collection<Progivanie> progivanieCollection;
     @JoinColumn(name = "IDGOSTIN", referencedColumnName = "ID")
     @ManyToOne
     private Hotel idgostin;
@@ -59,9 +62,6 @@ public class Nomerhotel implements Serializable {
     @OneToMany(mappedBy = "idnomer")
     @JsonIgnore
     private Collection<Zayvka> zayvkaCollection;
-    @OneToMany(mappedBy = "idnomer")
-    @JsonIgnore
-    private Collection<Progivanie> progivanieCollection;
 
     public Nomerhotel() {
     }
@@ -103,6 +103,15 @@ public class Nomerhotel implements Serializable {
         this.bronCollection = bronCollection;
     }
 
+    @XmlTransient
+    public Collection<Progivanie> getProgivanieCollection() {
+        return progivanieCollection;
+    }
+
+    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
+        this.progivanieCollection = progivanieCollection;
+    }
+
     public Hotel getIdgostin() {
         return idgostin;
     }
@@ -126,15 +135,6 @@ public class Nomerhotel implements Serializable {
 
     public void setZayvkaCollection(Collection<Zayvka> zayvkaCollection) {
         this.zayvkaCollection = zayvkaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Progivanie> getProgivanieCollection() {
-        return progivanieCollection;
-    }
-
-    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
-        this.progivanieCollection = progivanieCollection;
     }
 
     @Override

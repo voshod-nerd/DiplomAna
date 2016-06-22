@@ -6,6 +6,7 @@
 package com.infiniteskills.mvc.repository;
 
 import com.infiniteskills.mvc.entity.Zayvka;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,4 +26,7 @@ public interface ZayavkaRepository {
     Zayvka save(Zayvka nomer);
 
     void delete(Zayvka nomer);
+    public List<Zayvka> getByHotel(int hotel);
+    List<Zayvka> getAllCurrentZyavka();
+    List<Zayvka> getAllZyavkaByPeriod(Date b,Date en);
 }

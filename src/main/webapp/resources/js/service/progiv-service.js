@@ -1,13 +1,13 @@
 'use strict';
 
-App.factory('ServicsTypeUser', ['$http', '$q', function ($http, $q) {
+App.factory('ServicsProgiv', ['$http', '$q', function ($http, $q) {
 
         self.headers = {};
         self.headers["Content-Type"] = 'application/json';
 
         return { 
             fetchAllU: function () {
-                return $http.get('/vc/resttypeuser')
+                return $http.get('/vc/restprogivanie')
                         .then(
                                 function (response) {
                                     return response.data;
@@ -16,10 +16,10 @@ App.factory('ServicsTypeUser', ['$http', '$q', function ($http, $q) {
                                     console.error('Error while fetching units');
                                     return $q.reject(errResponse);
                                 }
-                        );
+                            );
             },
             createU: function (unit) {
-                return $http.post('/vc/resttypeuser/item',
+                return $http.post('/vc/restprogivanie/item',
                         JSON.stringify(unit))
                         .then(
                                 function (response) {
@@ -32,7 +32,7 @@ App.factory('ServicsTypeUser', ['$http', '$q', function ($http, $q) {
                         );
             },
             updateU: function (unit) {
-                return $http.put('/vc/resttypeuser/item',
+                return $http.put('/vc/restprogivanie/item',
                         JSON.stringify(unit))
                         .then(
                                 function (response) {
@@ -46,7 +46,7 @@ App.factory('ServicsTypeUser', ['$http', '$q', function ($http, $q) {
             },
             deleteU: function (unit) {
                 return $http({method: 'DELETE',
-                    url: '/vc/resttypeuser/item/',
+                    url: '/vc/restprogivanie/item/',
                     data: JSON.stringify(unit),
                     headers: self.headers})
                         .then(
@@ -58,6 +58,30 @@ App.factory('ServicsTypeUser', ['$http', '$q', function ($http, $q) {
                                     return $q.reject(errResponse);
                                 }
                         );
+            },
+             fetchAllUHotel: function () {
+                return $http.get('/vc/resthotel')
+                        .then(
+                                function (response) {
+                                    return response.data;
+                                },
+                                function (errResponse) {
+                                    console.error('Error while fetching units');
+                                    return $q.reject(errResponse);
+                                }
+                            );
+            },
+             fetchAllUNomer: function () {
+                return $http.get('/vc/restnomerhotel/getfree')
+                        .then(
+                                function (response) {
+                                    return response.data;
+                                },
+                                function (errResponse) {
+                                    console.error('Error while fetching units');
+                                    return $q.reject(errResponse);
+                                }
+                            );
             }
         };
     }]);

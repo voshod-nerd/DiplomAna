@@ -4,8 +4,8 @@ App.controller('ControllerGrafik', ['$scope', 'ServicsGrafik',
     function ($scope, ServicsGrafik) {
         var self = this;
 
-       
-
+        self.month='';
+        self.god='';
         self.unit = {
             id:null,
             idsotrudnik:null,
@@ -13,7 +13,39 @@ App.controller('ControllerGrafik', ['$scope', 'ServicsGrafik',
             dayd:null
           
         };
+        self.hotels = [];
+        self.hotel =null;
         self.units = [];
+       
+        $scope.sortType = 'location'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
+        $scope.searchFish = '';     // set the default search/filter term
+       
+       self.fetchAllHotel = function () {
+            ServicsGrafik.fetchAllUHotel()
+                    .then(
+                            function (d) {
+                                self.hotels = d;
+                                console.info(JSON.stringify(d));
+                            },
+                            function (errResponse) {
+                                console.error('Error while fetching U(controller)');
+                            }
+                    );
+        };
+        self.fetchAllHotel();
+        
+        
+       
+       
+       
+       self.grafiksmen =function () 
+       {
+          
+         
+           window.open('report/6/' +  self.god+'-'+self.month);
+         
+       };
        
 
         self.fetchAllU = function () {
@@ -21,7 +53,7 @@ App.controller('ControllerGrafik', ['$scope', 'ServicsGrafik',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -52,6 +84,7 @@ App.controller('ControllerGrafik', ['$scope', 'ServicsGrafik',
         };
 
         self.deleteU = function (unit) {
+            console.info('delete user');
           ServicsGrafik.deleteU(unit)
                     .then(
                             self.fetchAllU,

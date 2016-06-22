@@ -7,6 +7,7 @@ package com.infiniteskills.mvc.controllers.rest;
 
 import static com.infiniteskills.mvc.controllers.rest.RestControllerZayvka.EMPLOYEES_PATH;
 import com.infiniteskills.mvc.entity.Zayvka;
+import com.infiniteskills.mvc.entity.Hotel;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,17 +31,19 @@ public class RestControllerZayvka {
     public void setZavService(ZayavkaRepository zayService) {
         this.zayService = zayService;
     }
+    
+    @RequestMapping(method = RequestMethod.POST,value= "/items",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Zayvka> getZayvkaFromHotel(@RequestBody Hotel zav) {
+        System.out.println("Here "+zav.getName());
+        return zayService.getByHotel(zav.getId());
+        //return zayService.findAllWithDetails();
+    }
+    
+    
      
     
      @RequestMapping(method = RequestMethod.GET)
     public List<Zayvka> getEmployeeList() {
-        
-        System.out.println("I heree");
-         List<Zayvka> lsHotel = zayService.findAll();
-          System.out.println("size is ="+lsHotel.size());
-        for (Zayvka dept : lsHotel) {
-            System.out.println("name " + dept.getIdnomer());
-        }
         return zayService.findAll();
     }
 

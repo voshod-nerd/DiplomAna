@@ -6,28 +6,32 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
 
         self.unit = {
             id: null,
-            dr: '',
+            dr: null,
             fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
+            grag: '',
+            num: '',
+            ser: '',
+            iddolgnost: null,
+            iduser: null,
+            mr: '',
+            doclich: '',
+            kemvidan: '',
+            adres: '',
+            phone: '',
+            education: '',
+            koldet: '',
+            kogdavidan: null
         };
 
-
-
+        $scope.searchFish = '';     // set the default search/filter term
 
         self.units = [];
-       
+
+        self.rep = function ()
+        {
+            window.open('report/8/2');
+        };
+        
 
 
         self.fetchAllU = function () {
@@ -35,7 +39,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -76,47 +80,62 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
 
-        
+
 
         self.edit = function (unit) {
             console.log('Employee name to be edited', unit);
             var dolg = (unit.iddolgnost !== null) ?
-             JSON.stringify(unit.iddolgnost) : null;
-             /*var post = (employee.post !== null) ?
-             JSON.stringify(employee.post) : null;
-            */
-             self.unit=unit;
-             self.unit.iddolgnost = dolg;
-            //self.unit.location = unit.location;
-            //;
-            //self.unit.name = unit.name;
+                    JSON.stringify(unit.iddolgnost) : null;
+
+            var user = (unit.iduser !== null) ?
+                    JSON.stringify(unit.iduser) : null;
+
+            self.unit = unit;
+            self.unit.dr = new Date(unit.dr);
+            self.unit.kogdavidan = new Date(unit.kemvidan);
+
+            self.unit.iddolgnost = dolg;
+            self.unit.iduser = user;
+
             $scope.myForm.$setDirty();
         };
 
 
         self.reset = function () {
-             self.unit = {
-            id: null,
-            dr: '',
-            fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
-            
-        };
+            self.unit = {
+                id: null,
+                dr: '',
+                fio: '',
+                grag: '',
+                num: '',
+                ser: '',
+                iddolgnost: null,
+                iduser: null,
+                mr: '',
+                doclich: '',
+                kemvidan: '',
+                adres: '',
+                phone: '',
+                education: '',
+                koldet: '',
+                kogdavidan: ''
+
+            };
             $scope.myForm.$setPristine(); //reset Form
         };
 
+        self.report = function (e) {
+            window.open('report/1/' + e.id);
+        };
+        
+        self.bolnic = function (e) {
+            window.open('report/bolnic/' + e.id);
+        };
+        self.uvol = function (e) {
+            window.open('report/uvol/' + e.id);
+        };
+        
+        
         self.submit = function () {
             // console.log('department - ' + self.employee.department);
             /* var department = self.employee.department !== null ?
@@ -126,16 +145,20 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
              */
             //self.unit.location = department;
             //self.unit.name = post;
-            
+
+            var user = self.unit.iduser !== null ?
+                    JSON.parse(self.unit.iduser) : null;
+
             var iddolg = self.unit.iddolgnost !== null ?
-            JSON.parse(self.unit.iddolgnost) : null;
-            self.unit.iddolgnost=iddolg;
-            
+                    JSON.parse(self.unit.iddolgnost) : null;
+            self.unit.iddolgnost = iddolg;
+            self.iduser = user;
+
             if (self.unit.id === null) {
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

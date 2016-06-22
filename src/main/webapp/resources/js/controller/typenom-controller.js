@@ -24,7 +24,7 @@ App.controller('ControllerTN', ['$scope', 'ServicsTN',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -105,7 +105,7 @@ App.controller('ControllerTN', ['$scope', 'ServicsTN',
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

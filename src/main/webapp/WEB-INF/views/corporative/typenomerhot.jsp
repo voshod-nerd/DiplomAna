@@ -1,19 +1,12 @@
-<%-- 
-    Document   : organization
-    Created on : 04.05.2016, 17:52:04
-    Author     : Соколов
---%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Служебный сайт комплекса гостиниц</title>
-
-
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="resources/js/jquery-1.12.3.min.js"></script>
+        <script src="resources/js/jquery-2.2.2.min.js"></script>
         <!-- Bootstrap -->
         <link href="resources/css/bootstrap.min.css" rel="stylesheet">
         <!-- css code for slider  -->
@@ -22,13 +15,13 @@
 
         <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB --> 
-        <!-- Angular JS -->
+          <!-- Angular JS -->
         <script src="resources/js/angular.min.js" ></script>
 
         <script   src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.js"   integrity="sha256-6HSLgn6Ao3PKc5ci8rwZfb//5QUu3ge2/Sw9KfLuvr8="   crossorigin="anonymous"></script>
     </head>
     <body ng-app="myApp">
-        <div class="navbar navbar-default navbar-fixed-top">
+       <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <a href="/vc/home" class="navbar-brand">Админка (Главная)</a>
@@ -40,28 +33,248 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav">
+                        <sec:authorize access="hasRole('ROLE_DIRECTOR')">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Cписок дейсвий<span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="themes">
-                                <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
-                                <li><a href="hotel" >Редактирование списка отелей</a></li>
-                                
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Справочники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Гостиницы</a></li>
+                                        <li><a href="typenomerhot" >Типы номеров</a></li>
+                                        <li><a href="uslug" >Дополнительные услуги</a></li>
+                                        <li><a href="typezav" >Типы заявок</a></li>
+                                        <li><a href="organiz" >Организации</a></li>
+                                        <li><a href="programs" >Пусковые программы</a></li>
+                                        <li><a href="pitan" >Виды питания</a></li>
+                                        <li><a href="dolgnost" >Должностя</a></li>
                                 <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Номера<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >Номера</a></li>
+                                        <li> <a href="orders" >План текущих ремонтых работ</a></li>
+                                          <li class="divider"></li>
                             </ul>
                         </li>
-
-                        <li>
-
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Сотрудники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Сотрудники</a></li>
+                                        <li><a href="otpusk" >Отпуска</a></li>
+                                        <li><a href="grafik" >График дежурств</a></li>
+                                          <li class="divider"></li>
+                            </ul>
                         </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Клиенты<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >Клиенты</a></li>
+                                        <li><a href="bronz" >Бронирование</a></li>
+                                        <li><a href="reestuslug" >Дополнительные услуги</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Тарифы<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Типы тарифов</a></li>
+                                        <li><a href="stoimostpitan" >Стоимость питания</a></li>
+                                        <li><a href="stoimostnomer" >Стоимость типов номеров</a></li>
+                                        <li><a href="stoimostuslug" >Стоимость дополнительных услуг</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+                        
+                        
+                         <sec:authorize access="hasRole('ROLE_ZAM')">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Справочники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Гостиницы</a></li>
+                                        <li><a href="typenomerhot" >Типы номеров</a></li>
+                                        <li><a href="uslug" >Дополнительные услуги</a></li>
+                                        <li><a href="typezav" >Типы заявок</a></li>
+                                        <li><a href="organiz" >Организации</a></li>
+                                        <li><a href="programs" >Пусковые программы</a></li>
+                                        <li><a href="pitan" >Виды питания</a></li>
+                                        <li><a href="dolgnost" >Должностя</a></li>
+                                <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Номера<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >Номера</a></li>
+                                        <li> <a href="orders" >План текущих ремонтых работ</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Сотрудники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Сотрудники</a></li>
+                                        <li><a href="otpusk" >Отпуска</a></li>
+                                        <li><a href="grafik" >График дежурств</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Клиенты<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >Клиенты</a></li>
+                                        <li><a href="bronz" >Бронирование</a></li>
+                                        <li><a href="reestuslug" >Дополнительные услуги</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Тарифы<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Типы тарифов</a></li>
+                                        <li><a href="stoimostpitan" >Стоимость питания</a></li>
+                                        <li><a href="stoimostnomer" >Стоимость типов номеров</a></li>
+                                        <li><a href="stoimostuslug" >Стоимость дополнительных услуг</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Справочники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Гостиницы</a></li>
+                                        <li><a href="typenomerhot" >Типы номеров</a></li>
+                                        <li><a href="uslug" >Дополнительные услуги</a></li>
+                                        <li><a href="typezav" >Типы заявок</a></li>
+                                        <li><a href="organiz" >Организации</a></li>
+                                        <li><a href="programs" >Пусковые программы</a></li>
+                                        <li><a href="pitan" >Виды питания</a></li>
+                                        <li><a href="dolgnost" >Должностя</a></li>
+                                <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Номера<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >Номера</a></li>
+                                        <li> <a href="orders" >План текущих ремонтых работ</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Сотрудники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Сотрудники</a></li>
+                                        <li><a href="otpusk" >Отпуска</a></li>
+                                        <li><a href="grafik" >График дежурств</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Клиенты<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >Клиенты</a></li>
+                                        <li><a href="bronz" >Бронирование</a></li>
+                                        <li><a href="reestuslug" >Дополнительные услуги</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Тарифы<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Типы тарифов</a></li>
+                                        <li><a href="stoimostpitan" >Стоимость питания</a></li>
+                                        <li><a href="stoimostnomer" >Стоимость типов номеров</a></li>
+                                        <li><a href="stoimostuslug" >Стоимость дополнительных услуг</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+
+                       
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li><a href="/vc" target="_blank">Главная (общедоступная)</a></li>
+                        <li><a href="index" target="_blank">Главная (общедоступная)</a></li>
                     </ul>
                 </div>
             </div>
         </div>
+
 
 
 
@@ -82,7 +295,7 @@
                                         <input type="text" ng-model="ctrl.unit.mest" 
                                                id="lastname" 
                                                class="username form-control input-sm" 
-                                               placeholder="Введите местоположение" 
+                                               placeholder="Количество спальных мест" 
                                                required ng-minlength="1"/>
                                         <div class="has-error" ng-show="myForm.$dirty">
                                             <span ng-show="myForm.name.$error.required">Это обязательное поле</span>
@@ -99,7 +312,7 @@
                                         <input type="text" ng-model="ctrl.unit.type" 
                                                id="lastname" 
                                                class="username form-control input-sm" 
-                                               placeholder="Введите местоположение" 
+                                               placeholder="Тип номера" 
                                                required ng-minlength="1"/>
                                         <div class="has-error" ng-show="myForm.$dirty">
                                             <span ng-show="myForm.name.$error.required">Это обязательное поле</span>
@@ -130,10 +343,11 @@
                 <!-- Default panel contents -->
                 <div class="panel-heading"><span class="lead">Список типов номеров</span></div>
                 <div class="tablecontainer">
-                    <table class="table table-hover">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Название заявки</th>
+                                <th>Количество мест</th>
+                                <th>Тип</th>
                                 <th width="20%"></th>
                             </tr>
                         </thead>
@@ -158,9 +372,10 @@
             </div>
         </div>
 
-
+        <script src="resources/js/helpfunction/FileSaver.js"></script>
         <script src="resources/js/app/hotels-app.js"></script>
         <script src="resources/js/service/typenom-service.js"></script>
-        <script src="resources/js/controller/typenom-controller.js"></script> 
+        <script src="resources/js/controller/typenom-controller.js"></script>         
+          <script src="resources/js/module/json-export-excel.js"></script> 
     </body>
 </html>

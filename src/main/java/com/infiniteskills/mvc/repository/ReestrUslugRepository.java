@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.repository;
 
+import com.infiniteskills.mvc.entity.Client;
 import com.infiniteskills.mvc.entity.Reestruslug;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public interface ReestrUslugRepository {
     List<Reestruslug> findAllWithDetails();
 
     Reestruslug save(Reestruslug rab);
+    List<Reestruslug> getListUslugByIdClient(Client cl);
 
     void delete(Reestruslug rab);
 }

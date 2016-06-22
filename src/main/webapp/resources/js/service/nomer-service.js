@@ -6,6 +6,18 @@ App.factory('ServiceNomer', ['$http', '$q', function ($http, $q) {
         self.headers["Content-Type"] = 'application/json';
 
         return { 
+            fetchFreeU: function (unit) {
+                return $http.post('/vc/restnomerhotel/items',JSON.stringify(unit))
+                        .then(
+                                function (response) {
+                                    return response.data;
+                                },
+                                function (errResponse) {
+                                    console.error('Error while fetching units');
+                                    return $q.reject(errResponse);
+                                }
+                        );
+            },
             fetchAllU: function () {
                 return $http.get('/vc/restnomerhotel')
                         .then(
@@ -19,18 +31,7 @@ App.factory('ServiceNomer', ['$http', '$q', function ($http, $q) {
                         );
             },
             
-            fetchFreeU: function (unit) {
-                return $http.post('/vc/restnomerhotel/items',JSON.stringify(unit))
-                        .then(
-                                function (response) {
-                                    return response.data;
-                                },
-                                function (errResponse) {
-                                    console.error('Error while fetching units');
-                                    return $q.reject(errResponse);
-                                }
-                        );
-            },
+            
             
             createU: function (unit) {
                 return $http.post('/vc/restnomerhotel/item',

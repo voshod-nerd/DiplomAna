@@ -26,14 +26,17 @@ public class VizaRepositoryImpl implements VizaRepository {
      @PersistenceContext
     private EntityManager em;
     
+     @Override
     public List<Viza> findAll() {
-      return em.createNamedQuery("Bron.findAll").getResultList();
+      return em.createNamedQuery("Viza.findAll").getResultList();
     }
-
+    
+    @Override
     public List<Viza> findAllWithDetails() {
-        return em.createNamedQuery("Bron.findAllWithDetail").getResultList();
+        return em.createNamedQuery("Viza.findAllWithDetail").getResultList();
     }
 
+    @Override
     public Viza save(Viza nomer) {
           if (nomer.getId() == null) {
             em.persist(nomer);
@@ -43,16 +46,19 @@ public class VizaRepositoryImpl implements VizaRepository {
         return nomer;
     }
 
+    @Override
     public void delete(Viza nomer) {
           Viza mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
-
+    
+    @Override
     public Viza create(Viza zav) {
          em.persist(zav);
         return zav;
     }
 
+    @Override
     public Viza update(Viza zav) {
         //int version = find(zav).getVersion();
         //Zayvka.setVersion(version);

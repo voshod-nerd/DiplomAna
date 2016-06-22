@@ -4,16 +4,15 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
     function ($scope, ServicsPitan) {
         var self = this;
 
-       
+
 
         self.unit = {
             id: null,
-            
-            name:''
-          
+            name: ''
+
         };
 
-
+        self.searchFish = '';
 
 
         self.units = [];
@@ -27,7 +26,7 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -38,7 +37,7 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
         self.fetchAllU();
 
         self.createU = function (unit) {
-           ServicsPitan.createU(unit)
+            ServicsPitan.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -58,7 +57,7 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
         };
 
         self.deleteU = function (unit) {
-           ServicsPitan.deleteU(unit)
+            ServicsPitan.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -68,7 +67,7 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
         };
 
 
-        
+
 
         self.edit = function (unit) {
             console.log('Unit name to be edited', unit);
@@ -78,7 +77,7 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
              JSON.stringify(employee.post) : null;
              self.employee = employee;
              */
-            self.unit=unit;
+            self.unit = unit;
             //self.unit.location = unit.location;
             //;
             //self.unit.name = unit.name;
@@ -88,9 +87,9 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
 
         self.reset = function () {
             self.unit = {
-            id: null,
-            name:''
-        };
+                id: null,
+                name: ''
+            };
             $scope.myForm.$setPristine(); //reset Form
         };
 
@@ -107,7 +106,7 @@ App.controller('ControllerPitan', ['$scope', 'ServicsPitan',
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

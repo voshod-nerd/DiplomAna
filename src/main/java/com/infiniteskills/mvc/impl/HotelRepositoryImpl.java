@@ -26,16 +26,20 @@ public class HotelRepositoryImpl implements HotelRepository {
 
     @PersistenceContext
     private EntityManager em;
-
+  
+    
+    @Override
     public List<Hotel> findAll() {
         return em.createNamedQuery("Hotel.findAll").getResultList();
     }
-
+ 
+    @Override 
     public List<Hotel> findAllWithDetails() {
         return em.createNamedQuery("Hotel.findAllWithDetail").getResultList();
     }
-
-    public Hotel save(Hotel nomer) {
+     
+    @Override
+     public Hotel save(Hotel nomer) {
         if (nomer.getId() == null) {
             em.persist(nomer);
         } else {
@@ -43,16 +47,20 @@ public class HotelRepositoryImpl implements HotelRepository {
         }
         return nomer;
     }
-
+    
+     @Override
     public void delete(Hotel nomer) {
         Hotel mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
-
+  
+    @Override
     public Hotel update(Hotel hot) {
          return em.merge(hot);
     }
 
+    
+    @Override
     public Hotel create(Hotel hot) {
        em.persist(hot);
         return hot;

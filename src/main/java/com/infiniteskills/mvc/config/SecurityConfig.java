@@ -5,7 +5,6 @@
  */
 package com.infiniteskills.mvc.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,39 +19,36 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  extends WebSecurityConfigurerAdapter{
-  
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
 
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // System.out.println(customUserDetailsService.loadUserByUsername("alex").toString());
+        auth.userDetailsService(customUserDetailsService);
 
-    
-        @Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-               // System.out.println(customUserDetailsService.loadUserByUsername("alex").toString());
-		auth.userDetailsService(customUserDetailsService);
-                
-	}
+    }
 
-	  @Override
-	  public void configure(WebSecurity web) throws Exception {
-	    web
-	      .ignoring()
-	         .antMatchers("/resources/**"); // #3
-	  }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**"); // #3
+    }
 
-	  @Override
-	  protected void configure(HttpSecurity http) throws Exception {
-	   http.csrf()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf()
                 .disable()
-              
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/vc","/").permitAll()
-                .antMatchers("/home").hasRole("ADMIN") 
-                .antMatchers("/reservation").hasRole("USER")   
+                .antMatchers("/resources/**","/vc").permitAll()
+                .antMatchers("/bron","/client","/dolgnost","/home","/orders","/sotrudnik","/organiz","/typezav","/typenomerhot","/tarif","/uslug","/programs","/pitan","/typeuser","/dolgnost","/stoimostpitan","/stoimostnomer","/stoimostuslug","/otpusk","/grafik","/client","/bronz","/nomer","/reestuslug","/progiv").hasAnyRole("ADMIN","ZAM","DIRECTOR")        
+                        
+                
                 .and();
- 
+
         http.formLogin()
                 // ????????? ???????? ? ?????? ??????
                 .loginPage("/enter")
@@ -63,9 +59,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
                 // ????????? ????????? ?????? ? ?????? ? ????? ??????
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
-                 // даем доступ к форме логина всем
+                .defaultSuccessUrl("/index", true)
+                // даем доступ к форме логина всем
                 .permitAll();
- 
+
         http.logout()
                 // ????????? ?????? ?????? ????
                 .permitAll()
@@ -75,6 +72,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
                 .logoutSuccessUrl("/")
                 // ?????? ?? ???????? ??????? ??????
                 .invalidateHttpSession(true);
-	  }
-    
+    }
+
 }

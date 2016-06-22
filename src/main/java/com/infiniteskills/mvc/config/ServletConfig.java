@@ -37,6 +37,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
+        viewResolver.setContentType("text/plain;charset=UTF-8");
         registry.viewResolver(viewResolver);
     }
 

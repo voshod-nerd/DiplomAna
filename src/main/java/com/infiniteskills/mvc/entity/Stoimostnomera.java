@@ -7,11 +7,13 @@ package com.infiniteskills.mvc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,17 +39,19 @@ public class Stoimostnomera implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "summa")
-    private BigInteger summa;
-    @JoinColumn(name = "idtypenomer", referencedColumnName = "ID")
-    @ManyToOne
-    private Typenomerhotel idtypenomer;
+    private BigDecimal summa;
     @JoinColumn(name = "idtarif", referencedColumnName = "id")
     @ManyToOne
     private Tarifz idtarif;
+    @JoinColumn(name = "idtypenomer", referencedColumnName = "ID")
+    @ManyToOne
+    private Typenomerhotel idtypenomer;
     @OneToMany(mappedBy = "idstoimostnomer")
     @JsonIgnore
     private Collection<Progivanie> progivanieCollection;
@@ -67,20 +71,12 @@ public class Stoimostnomera implements Serializable {
         this.id = id;
     }
 
-    public BigInteger getSumma() {
+    public BigDecimal getSumma() {
         return summa;
     }
 
-    public void setSumma(BigInteger summa) {
+    public void setSumma(BigDecimal summa) {
         this.summa = summa;
-    }
-
-    public Typenomerhotel getIdtypenomer() {
-        return idtypenomer;
-    }
-
-    public void setIdtypenomer(Typenomerhotel idtypenomer) {
-        this.idtypenomer = idtypenomer;
     }
 
     public Tarifz getIdtarif() {
@@ -89,6 +85,14 @@ public class Stoimostnomera implements Serializable {
 
     public void setIdtarif(Tarifz idtarif) {
         this.idtarif = idtarif;
+    }
+
+    public Typenomerhotel getIdtypenomer() {
+        return idtypenomer;
+    }
+
+    public void setIdtypenomer(Typenomerhotel idtypenomer) {
+        this.idtypenomer = idtypenomer;
     }
 
     @XmlTransient

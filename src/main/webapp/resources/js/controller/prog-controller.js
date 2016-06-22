@@ -27,7 +27,7 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -68,8 +68,6 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
         };
 
 
-
-
         self.edit = function (unit) {
             console.log('Unit name to be edited', unit);
             var org = (unit.idorganization !== null) ?
@@ -92,7 +90,7 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
 
         self.reset = function () {
             self.unit = {
-               id: null,
+            id: null,
             dateb: null,
             dateend:null,
             name: '',
@@ -127,7 +125,7 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
             
             self.unit.dateb=new Date((self.unit.dateb));
             self.unit.dateend=new Date((self.unit.dateend));        
-            alert(JSON.stringify(self.unit));
+           //alert(JSON.stringify(self.unit));
            
            
 

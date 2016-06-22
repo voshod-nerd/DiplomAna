@@ -58,6 +58,18 @@ App.factory('ServicsGrafik', ['$http', '$q', function ($http, $q) {
                                     return $q.reject(errResponse);
                                 }
                         );
+            },
+            fetchAllUHotel: function () {
+                return $http.get('/vc/resthotel')
+                        .then(
+                                function (response) {
+                                    return response.data;
+                                },
+                                function (errResponse) {
+                                    console.error('Error while fetching units');
+                                    return $q.reject(errResponse);
+                                }
+                            );
             }
         };
     }]);

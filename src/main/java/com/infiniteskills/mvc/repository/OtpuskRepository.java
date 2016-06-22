@@ -19,4 +19,7 @@ public interface OtpuskRepository {
      List< Otpusk> findAllWithDetails();
      Otpusk save( Otpusk pit);
      void delete( Otpusk pit);
+     List<Otpusk> getOtpuskByIdsotr(String cl);
+    
+     Otpusk getOtpuskById(String id);
 }

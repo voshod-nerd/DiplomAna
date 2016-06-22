@@ -6,6 +6,7 @@
 package com.infiniteskills.mvc.repository;
 
 import com.infiniteskills.mvc.entity.Bron;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,4 +25,7 @@ public interface BronRepository {
     Bron save(Bron prog);
 
     void delete(Bron prog);
+     public List<Bron> getBronByIdOrg(int idorg);
+     List<Bron> getBronByHotel(String idhotel);
+     List<Bron> getBronByPeriod(Date b,Date en);
 }

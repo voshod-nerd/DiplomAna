@@ -5,7 +5,9 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +18,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,12 +35,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Organization.findById", query = "SELECT o FROM Organization o WHERE o.id = :id"),
     @NamedQuery(name = "Organization.findByAdres", query = "SELECT o FROM Organization o WHERE o.adres = :adres"),
     @NamedQuery(name = "Organization.findByFiopredstavitel", query = "SELECT o FROM Organization o WHERE o.fiopredstavitel = :fiopredstavitel"),
+    @NamedQuery(name = "Organization.findByInn", query = "SELECT o FROM Organization o WHERE o.inn = :inn"),
+    @NamedQuery(name = "Organization.findByKpp", query = "SELECT o FROM Organization o WHERE o.kpp = :kpp"),
     @NamedQuery(name = "Organization.findByMail", query = "SELECT o FROM Organization o WHERE o.mail = :mail"),
     @NamedQuery(name = "Organization.findByName", query = "SELECT o FROM Organization o WHERE o.name = :name"),
-    @NamedQuery(name = "Organization.findByPhone", query = "SELECT o FROM Organization o WHERE o.phone = :phone"),
-    @NamedQuery(name = "Organization.findByInn", query = "SELECT o FROM Organization o WHERE o.inn = :inn"),
     @NamedQuery(name = "Organization.findByOgrn", query = "SELECT o FROM Organization o WHERE o.ogrn = :ogrn"),
-    @NamedQuery(name = "Organization.findByKpp", query = "SELECT o FROM Organization o WHERE o.kpp = :kpp")})
+    @NamedQuery(name = "Organization.findByPhone", query = "SELECT o FROM Organization o WHERE o.phone = :phone")})
 public class Organization implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,21 +53,30 @@ public class Organization implements Serializable {
     private String adres;
     @Column(name = "FIOPREDSTAVITEL")
     private String fiopredstavitel;
+    @Column(name = "INN")
+    private String inn;
+    @Column(name = "KPP")
+    private String kpp;
     @Column(name = "MAIL")
     private String mail;
     @Column(name = "NAME")
     private String name;
-    @Column(name = "PHONE")
-    private String phone;
-    @Column(name = "INN")
-    private String inn;
     @Column(name = "OGRN")
     private String ogrn;
-    @Column(name = "KPP")
-    private String kpp;
+    @Column(name = "PHONE")
+    private String phone;
+    @OneToMany(mappedBy = "idorg")
+    @JsonIgnore
+    private Collection<Bron> bronCollection;
+    @OneToMany(mappedBy = "idorganization")
+    @JsonIgnore
+    private Collection<Program> programCollection;
     @JoinColumn(name = "iduser", referencedColumnName = "username")
     @ManyToOne
     private Employee iduser;
+    @OneToMany(mappedBy = "idorg")
+    @JsonIgnore
+    private Collection<Client> clientCollection;
 
     public Organization() {
     }
@@ -96,6 +109,22 @@ public class Organization implements Serializable {
         this.fiopredstavitel = fiopredstavitel;
     }
 
+    public String getInn() {
+        return inn;
+    }
+
+    public void setInn(String inn) {
+        this.inn = inn;
+    }
+
+    public String getKpp() {
+        return kpp;
+    }
+
+    public void setKpp(String kpp) {
+        this.kpp = kpp;
+    }
+
     public String getMail() {
         return mail;
     }
@@ -112,22 +141,6 @@ public class Organization implements Serializable {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getInn() {
-        return inn;
-    }
-
-    public void setInn(String inn) {
-        this.inn = inn;
-    }
-
     public String getOgrn() {
         return ogrn;
     }
@@ -136,12 +149,30 @@ public class Organization implements Serializable {
         this.ogrn = ogrn;
     }
 
-    public String getKpp() {
-        return kpp;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setKpp(String kpp) {
-        this.kpp = kpp;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @XmlTransient
+    public Collection<Bron> getBronCollection() {
+        return bronCollection;
+    }
+
+    public void setBronCollection(Collection<Bron> bronCollection) {
+        this.bronCollection = bronCollection;
+    }
+
+    @XmlTransient
+    public Collection<Program> getProgramCollection() {
+        return programCollection;
+    }
+
+    public void setProgramCollection(Collection<Program> programCollection) {
+        this.programCollection = programCollection;
     }
 
     public Employee getIduser() {
@@ -150,6 +181,15 @@ public class Organization implements Serializable {
 
     public void setIduser(Employee iduser) {
         this.iduser = iduser;
+    }
+
+    @XmlTransient
+    public Collection<Client> getClientCollection() {
+        return clientCollection;
+    }
+
+    public void setClientCollection(Collection<Client> clientCollection) {
+        this.clientCollection = clientCollection;
     }
 
     @Override

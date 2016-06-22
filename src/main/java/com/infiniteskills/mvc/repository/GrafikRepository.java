@@ -6,6 +6,7 @@
 package com.infiniteskills.mvc.repository;
 
 import com.infiniteskills.mvc.entity.Grafik;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,4 +20,5 @@ public interface GrafikRepository {
      List<Grafik> findAllWithDetails();
      Grafik save(Grafik pit);
      void delete(Grafik pit);
+     List<Grafik> getGrafikByHotel(Date begin,Date end);
 }

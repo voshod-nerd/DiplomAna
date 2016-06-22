@@ -5,7 +5,9 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,10 +19,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -52,6 +56,9 @@ public class Program implements Serializable {
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
+    @OneToMany(mappedBy = "progclient")
+    @JsonIgnore
+    private Collection<Client> clientCollection;
     @JoinColumn(name = "idorganization", referencedColumnName = "ID")
     @ManyToOne
     private Organization idorganization;
@@ -101,6 +108,15 @@ public class Program implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @XmlTransient
+    public Collection<Client> getClientCollection() {
+        return clientCollection;
+    }
+
+    public void setClientCollection(Collection<Client> clientCollection) {
+        this.clientCollection = clientCollection;
     }
 
     public Organization getIdorganization() {

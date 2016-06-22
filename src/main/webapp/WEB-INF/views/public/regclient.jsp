@@ -53,7 +53,7 @@
                     <ul class="nav navbar-nav navbar-right">
                        
                         <li><a href="contact" >Контакты</a></li>
-                        <li><a href="about" >Об нас</a></li>
+                       
                         <li><a href="home" >Корпоративный сайт</a></li>
                         <li> 
                             <sec:authorize access="isAuthenticated()">
@@ -74,11 +74,7 @@
                  <h3 class="text-center">Заполните регистрационные данные представителя организации</h3>
                 <label >Ваше ФИО</label>
                 <input class="form-control" path="fio" name="fio" type="text" />
-               
 
-
-
-               
                 <label >Ваша организация</label>
                 <select class="form-control " name="org" >
                     <c:forEach var="org" items="${listOrg}"   varStatus="orgs">

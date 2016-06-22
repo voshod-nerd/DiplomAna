@@ -6,7 +6,7 @@
 package com.infiniteskills.mvc.controllers.rest;
 
 
-import static com.infiniteskills.mvc.controllers.rest.RestControllerHotel._PATH;
+import static com.infiniteskills.mvc.controllers.rest.RestControllerHotel._PATH99;
 import com.infiniteskills.mvc.entity.Hotel;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @RestController
-@RequestMapping(path = _PATH,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = _PATH99,produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestControllerHotel {
-    public static final String _PATH = "/resthotel";
+    public static final String _PATH99 = "/resthotel";
     public static final String ITEM_PATH = "/item";
     
      private HotelRepository uService;
@@ -37,16 +37,10 @@ public class RestControllerHotel {
     
      @RequestMapping(method = RequestMethod.GET)
     public List<Hotel> getUnitList() {
-        
-       
-         List<Hotel> lsHotel = uService.findAll();
-          System.out.println("size is ="+lsHotel.size());
-        for (Hotel dept : lsHotel) {
-            System.out.println("name " + dept.getName());
-        }
         return uService.findAll();
     }
-
+    
+    
     @RequestMapping(method = RequestMethod.POST,
             path = ITEM_PATH,
             consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -58,6 +52,7 @@ public class RestControllerHotel {
             path = ITEM_PATH,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Hotel updateU(@RequestBody Hotel zav) {
+        System.out.println("I am here");
         return uService.update(zav);
     }
 

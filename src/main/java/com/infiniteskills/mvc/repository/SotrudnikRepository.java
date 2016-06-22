@@ -23,4 +23,5 @@ public interface SotrudnikRepository {
     Sotrudnik update(Sotrudnik rab);
 
     Sotrudnik create(Sotrudnik rab);
+    Sotrudnik getSotrudnikById(String idsotr);
 }

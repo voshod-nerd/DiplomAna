@@ -12,6 +12,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -28,6 +29,9 @@ public class CORSFilter implements Filter {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
+        response.setContentType("text/plain;charset=UTF-8");
+        HttpServletRequest request = (HttpServletRequest) req;
+        request.setCharacterEncoding("UTF-8");
         chain.doFilter(req, res);
     }
 

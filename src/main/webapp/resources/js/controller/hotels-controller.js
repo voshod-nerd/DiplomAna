@@ -1,5 +1,4 @@
 'use strict';
-
 App.controller('Controller', ['$scope', 'Servics',
     function ($scope, Servics) {
         var self = this;
@@ -14,7 +13,14 @@ App.controller('Controller', ['$scope', 'Servics',
             name: ''
         };
 
+        self.selectedLocation = [];
+        
+       
 
+        $scope.sortType = 'location'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
+        $scope.searchFish = '';     // set the default search/filter term
+        
 
 
         self.units = [];
@@ -28,7 +34,7 @@ App.controller('Controller', ['$scope', 'Servics',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -88,9 +94,8 @@ App.controller('Controller', ['$scope', 'Servics',
              self.employee = employee;
              */
             self.unit=unit;
-            //self.unit.location = unit.location;
-            //;
-            //self.unit.name = unit.name;
+         
+            
             $scope.myForm.$setDirty();
         };
 
@@ -99,7 +104,7 @@ App.controller('Controller', ['$scope', 'Servics',
             self.unit = {
                 id: null,
                 location: '',
-                name: '',
+                name: ''
             };
             $scope.myForm.$setPristine(); //reset Form
         };
@@ -113,11 +118,12 @@ App.controller('Controller', ['$scope', 'Servics',
              */
             //self.unit.location = department;
             //self.unit.name = post;
+            console.info(angular.toJson(self.unit));
             if (self.unit.id === null) {
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

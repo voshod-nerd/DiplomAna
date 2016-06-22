@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.config;
 
+import com.infiniteskills.mvc.report.ClientReports;
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -66,6 +67,11 @@ public class JPAConfig {
     }
 
     @Bean
+    public ClientReports getClientReports() {
+        return new ClientReports();
+    }
+
+    @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
@@ -74,6 +80,9 @@ public class JPAConfig {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", STRATEGY);
         properties.setProperty("hibernate.dialect", DIALECT);
+        properties.setProperty("hibernate.connection.characterEncoding", "utf8");
+        properties.setProperty("hibernate.connection.useUnicode", "true");
+        properties.setProperty("hibernate.connection.charSet", "UTF-8");
         return properties;
     }
 

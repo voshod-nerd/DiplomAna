@@ -6,6 +6,7 @@
 package com.infiniteskills.mvc.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,14 +18,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "client")
@@ -32,20 +35,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
     @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id"),
+    @NamedQuery(name = "Client.findByAdres", query = "SELECT c FROM Client c WHERE c.adres = :adres"),
     @NamedQuery(name = "Client.findByDataokon", query = "SELECT c FROM Client c WHERE c.dataokon = :dataokon"),
     @NamedQuery(name = "Client.findByDatavid", query = "SELECT c FROM Client c WHERE c.datavid = :datavid"),
     @NamedQuery(name = "Client.findByDr", query = "SELECT c FROM Client c WHERE c.dr = :dr"),
     @NamedQuery(name = "Client.findByFio", query = "SELECT c FROM Client c WHERE c.fio = :fio"),
+    @NamedQuery(name = "Client.findByFioeng", query = "SELECT c FROM Client c WHERE c.fioeng = :fioeng"),
     @NamedQuery(name = "Client.findByKemvidan", query = "SELECT c FROM Client c WHERE c.kemvidan = :kemvidan"),
     @NamedQuery(name = "Client.findByNumberdoc", query = "SELECT c FROM Client c WHERE c.numberdoc = :numberdoc"),
     @NamedQuery(name = "Client.findByPol", query = "SELECT c FROM Client c WHERE c.pol = :pol"),
-    @NamedQuery(name = "Client.findByProgclient", query = "SELECT c FROM Client c WHERE c.progclient = :progclient"),
     @NamedQuery(name = "Client.findBySerdoc", query = "SELECT c FROM Client c WHERE c.serdoc = :serdoc"),
-    @NamedQuery(name = "Client.findByFioeng", query = "SELECT c FROM Client c WHERE c.fioeng = :fioeng"),
-    @NamedQuery(name = "Client.findByViddock", query = "SELECT c FROM Client c WHERE c.viddock = :viddock"),
     @NamedQuery(name = "Client.findByStrana", query = "SELECT c FROM Client c WHERE c.strana = :strana"),
-    @NamedQuery(name = "Client.findByAdres", query = "SELECT c FROM Client c WHERE c.adres = :adres")})
+    @NamedQuery(name = "Client.findByViddock", query = "SELECT c FROM Client c WHERE c.viddock = :viddock")})
 public class Client implements Serializable {
+
+    @OneToMany(mappedBy = "idclient")
+    private Collection<Reestruslug> reestruslugCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,6 +58,8 @@ public class Client implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
+    @Column(name = "ADRES")
+    private String adres;
     @Column(name = "DATAOKON")
     @Temporal(TemporalType.DATE)
     private Date dataokon;
@@ -60,28 +67,27 @@ public class Client implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date datavid;
     @Column(name = "DR")
-    private String dr;
+    @Temporal(TemporalType.DATE)
+    private Date dr;
     @Column(name = "FIO")
     private String fio;
+    @Column(name = "FIOENG")
+    private String fioeng;
     @Column(name = "KEMVIDAN")
     private String kemvidan;
     @Column(name = "NUMBERDOC")
     private String numberdoc;
     @Column(name = "POL")
     private String pol;
-    @Column(name = "PROGCLIENT")
-    private String progclient;
     @Column(name = "SERDOC")
     private String serdoc;
-    @Column(name = "FIOENG")
-    private String fioeng;
-    @Column(name = "VIDDOCK")
-    private String viddock;
-    @Basic(optional = false)
     @Column(name = "STRANA")
     private String strana;
-    @Column(name = "ADRES")
-    private String adres;
+    @Column(name = "VIDDOCK")
+    private String viddock;
+    @JoinColumn(name = "PROGCLIENT", referencedColumnName = "id")
+    @ManyToOne
+    private Program progclient;
     @JoinColumn(name = "idorg", referencedColumnName = "ID")
     @ManyToOne
     private Organization idorg;
@@ -93,17 +99,20 @@ public class Client implements Serializable {
         this.id = id;
     }
 
-    public Client(Integer id, String strana) {
-        this.id = id;
-        this.strana = strana;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getAdres() {
+        return adres;
+    }
+
+    public void setAdres(String adres) {
+        this.adres = adres;
     }
 
     public Date getDataokon() {
@@ -122,11 +131,11 @@ public class Client implements Serializable {
         this.datavid = datavid;
     }
 
-    public String getDr() {
+    public Date getDr() {
         return dr;
     }
 
-    public void setDr(String dr) {
+    public void setDr(Date dr) {
         this.dr = dr;
     }
 
@@ -136,6 +145,14 @@ public class Client implements Serializable {
 
     public void setFio(String fio) {
         this.fio = fio;
+    }
+
+    public String getFioeng() {
+        return fioeng;
+    }
+
+    public void setFioeng(String fioeng) {
+        this.fioeng = fioeng;
     }
 
     public String getKemvidan() {
@@ -162,36 +179,12 @@ public class Client implements Serializable {
         this.pol = pol;
     }
 
-    public String getProgclient() {
-        return progclient;
-    }
-
-    public void setProgclient(String progclient) {
-        this.progclient = progclient;
-    }
-
     public String getSerdoc() {
         return serdoc;
     }
 
     public void setSerdoc(String serdoc) {
         this.serdoc = serdoc;
-    }
-
-    public String getFioeng() {
-        return fioeng;
-    }
-
-    public void setFioeng(String fioeng) {
-        this.fioeng = fioeng;
-    }
-
-    public String getViddock() {
-        return viddock;
-    }
-
-    public void setViddock(String viddock) {
-        this.viddock = viddock;
     }
 
     public String getStrana() {
@@ -202,12 +195,20 @@ public class Client implements Serializable {
         this.strana = strana;
     }
 
-    public String getAdres() {
-        return adres;
+    public String getViddock() {
+        return viddock;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public void setViddock(String viddock) {
+        this.viddock = viddock;
+    }
+
+    public Program getProgclient() {
+        return progclient;
+    }
+
+    public void setProgclient(Program progclient) {
+        this.progclient = progclient;
     }
 
     public Organization getIdorg() {
@@ -241,6 +242,15 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         return "com.infiniteskills.mvc.entity.Client[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Reestruslug> getReestruslugCollection() {
+        return reestruslugCollection;
+    }
+
+    public void setReestruslugCollection(Collection<Reestruslug> reestruslugCollection) {
+        this.reestruslugCollection = reestruslugCollection;
     }
     
 }

@@ -6,6 +6,7 @@
 package com.infiniteskills.mvc.repository;
 
 import com.infiniteskills.mvc.entity.Progivanie;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,7 +14,8 @@ import java.util.List;
  * @author Юыху
  */
 public interface ProgivanieRepository {
-     List<Progivanie> findAll();
+
+    List<Progivanie> findAll();
 
     Progivanie update(Progivanie prog);
 
@@ -24,4 +26,13 @@ public interface ProgivanieRepository {
     Progivanie save(Progivanie prog);
 
     void delete(Progivanie prog);
+
+    Progivanie findProgivById(String id);
+
+    List<Progivanie> findProgivByHotel(String hotel);
+
+    List<Progivanie> getCurrentProg();
+
+    List<Progivanie> ProgivByPeriod(Date b, Date en);
+
 }

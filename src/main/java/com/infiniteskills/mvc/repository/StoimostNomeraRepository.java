@@ -6,6 +6,7 @@
 package com.infiniteskills.mvc.repository;
 
 import com.infiniteskills.mvc.entity.Stoimostnomera;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -24,4 +25,6 @@ public interface StoimostNomeraRepository {
     Stoimostnomera save(Stoimostnomera rab);
 
     void delete(Stoimostnomera rab); 
+    public Stoimostnomera getSumForBronUser(String usr,int typenomer);
+    Stoimostnomera getStoimNomerByNomerAndTarif(int tarif,int typenomer);
 }

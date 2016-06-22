@@ -55,7 +55,7 @@
                     <ul class="nav navbar-nav navbar-right">
                        
                         <li><a href="contact" >Контакты</a></li>
-                        <li><a href="about" >Об нас</a></li>
+                       
                         <li><a href="home" >Корпоративный сайт</a></li>
                         <li> 
                             <sec:authorize access="isAuthenticated()">

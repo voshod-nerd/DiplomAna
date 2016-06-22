@@ -1,9 +1,4 @@
-<%-- 
-    Document   : sotrudnik
-    Created on : 04.05.2016, 12:04:36
-    Author     : Соколов
---%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +14,7 @@
         <!-- css code for slider  -->
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="resources/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB --> 
         <!-- Angular JS -->
@@ -40,27 +35,248 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav">
+                        <sec:authorize access="hasRole('ROLE_DIRECTOR')">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Cписок дейсвий<span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="themes">
-                        <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
-                        
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Справочники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Гостиницы</a></li>
+                                        <li><a href="typenomerhot" >Типы номеров</a></li>
+                                        <li><a href="uslug" >Дополнительные услуги</a></li>
+                                        <li><a href="typezav" >Типы заявок</a></li>
+                                        <li><a href="organiz" >Организации</a></li>
+                                        <li><a href="programs" >Пусковые программы</a></li>
+                                        <li><a href="pitan" >Виды питания</a></li>
+                                        <li><a href="dolgnost" >Должностя</a></li>
                                 <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Номера<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >Номера</a></li>
+                                        <li> <a href="orders" >План текущих ремонтых работ</a></li>
+                                          <li class="divider"></li>
                             </ul>
                         </li>
-
-                        <li>
-
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Сотрудники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Сотрудники</a></li>
+                                        <li><a href="otpusk" >Отпуска</a></li>
+                                        <li><a href="grafik" >График дежурств</a></li>
+                                          <li class="divider"></li>
+                            </ul>
                         </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Клиенты<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >Клиенты</a></li>
+                                        <li><a href="bronz" >Бронирование</a></li>
+                                        <li><a href="reestuslug" >Дополнительные услуги</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Тарифы<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Типы тарифов</a></li>
+                                        <li><a href="stoimostpitan" >Стоимость питания</a></li>
+                                        <li><a href="stoimostnomer" >Стоимость типов номеров</a></li>
+                                        <li><a href="stoimostuslug" >Стоимость дополнительных услуг</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+                        
+                        
+                         <sec:authorize access="hasRole('ROLE_ZAM')">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Справочники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Гостиницы</a></li>
+                                        <li><a href="typenomerhot" >Типы номеров</a></li>
+                                        <li><a href="uslug" >Дополнительные услуги</a></li>
+                                        <li><a href="typezav" >Типы заявок</a></li>
+                                        <li><a href="organiz" >Организации</a></li>
+                                        <li><a href="programs" >Пусковые программы</a></li>
+                                        <li><a href="pitan" >Виды питания</a></li>
+                                        <li><a href="dolgnost" >Должностя</a></li>
+                                <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Номера<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >Номера</a></li>
+                                        <li> <a href="orders" >План текущих ремонтых работ</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Сотрудники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Сотрудники</a></li>
+                                        <li><a href="otpusk" >Отпуска</a></li>
+                                        <li><a href="grafik" >График дежурств</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Клиенты<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >Клиенты</a></li>
+                                        <li><a href="bronz" >Бронирование</a></li>
+                                        <li><a href="reestuslug" >Дополнительные услуги</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Тарифы<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Типы тарифов</a></li>
+                                        <li><a href="stoimostpitan" >Стоимость питания</a></li>
+                                        <li><a href="stoimostnomer" >Стоимость типов номеров</a></li>
+                                        <li><a href="stoimostuslug" >Стоимость дополнительных услуг</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Справочники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Гостиницы</a></li>
+                                        <li><a href="typenomerhot" >Типы номеров</a></li>
+                                        <li><a href="uslug" >Дополнительные услуги</a></li>
+                                        <li><a href="typezav" >Типы заявок</a></li>
+                                        <li><a href="organiz" >Организации</a></li>
+                                        <li><a href="programs" >Пусковые программы</a></li>
+                                        <li><a href="pitan" >Виды питания</a></li>
+                                        <li><a href="dolgnost" >Должностя</a></li>
+                                <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Номера<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >Номера</a></li>
+                                        <li> <a href="orders" >План текущих ремонтых работ</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Сотрудники<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Сотрудники</a></li>
+                                        <li><a href="otpusk" >Отпуска</a></li>
+                                        <li><a href="grafik" >График дежурств</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Клиенты<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >Клиенты</a></li>
+                                        <li><a href="bronz" >Бронирование</a></li>
+                                        <li><a href="reestuslug" >Дополнительные услуги</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Тарифы<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Типы тарифов</a></li>
+                                        <li><a href="stoimostpitan" >Стоимость питания</a></li>
+                                        <li><a href="stoimostnomer" >Стоимость типов номеров</a></li>
+                                        <li><a href="stoimostuslug" >Стоимость дополнительных услуг</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+
+                       
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li><a href="/vc" target="_blank">Главная (общедоступная)</a></li>
+                        <li><a href="index" target="_blank">Главная (общедоступная)</a></li>
                     </ul>
                 </div>
             </div>
         </div>
+
 
 
 
@@ -91,7 +307,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="col-md-2 control-lable" for="lastname">Дата окончания отпуска</label>
@@ -140,23 +356,54 @@
                     </div>
                 </div
                 <!-- Default panel contents -->
-                <div class="panel-heading"><span class="lead">Стоимость видов питания в зависимости от тарифа</span></div>
+
+
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control" placeholder="Поиск по таблице" ng-model="ctrl.searchFish">
+                        </div>      
+                    </div>
+                </form>
+
+
+
+                <div class="panel-heading"><span class="lead">График отпусков сотрудников</span></div>
                 <div class="tablecontainer">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Сотрудник ФИО</th>
-                                <th>Дата начала отпуска</th>
-                                <th>Дата конча отпуска</th>
-                                
-                                
+                                <th>
+                                    <a href="#" ng-click="sortType = 'idsotr.fio'; ctrl.sortReverse = !ctrl.sortReverse">
+                                        ФИО сотрудника 
+                                        <span ng-show="sortType == 'idsotr.fio' && !ctrl.sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'idsotr.fio' && ctrl.sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+
+                                </th>
+                                <th>   
+                                    <a href="#" ng-click="sortType = 'dateb'; ctrl.sortReverse = !ctrl.sortReverse">
+                                      Дата начала отпуска 
+                                        <span ng-show="sortType == 'dateb' && !ctrl.sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'dateb' && ctrl.sortReverse" class="fa fa-caret-up"></span>
+                                    </a></th>
+                                <th>
+                                    <a href="#" ng-click="sortType = 'dateend'; ctrl.sortReverse = !ctrl.sortReverse">
+                                       Дата окончания отпуска
+                                        <span ng-show="sortType == 'dateend' && !ctrl.sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'dateend' && ctrl.sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+
+
                                 <th width="20%"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="e in ctrl.units">
+                            <tr ng-repeat="e in ctrl.units | orderBy:sortType:sortReverse | filter:ctrl.searchFish">
                                 <td><span ng-bind="e.idsotr.fio"></span></td>
-                               
+
                                 <td><span ng-bind="e.dateb"></span></td>
                                 <td><span ng-bind="e.dateend"></span></td>
                                 <td>
@@ -167,6 +414,13 @@
                                             ng-click="ctrl.deleteU(e)" 
                                             class="btn btn-danger custom-width"
                                             style=" width: 90px !important;">Удалить</button>
+                                            <button type="button" 
+                                            ng-click="ctrl.otpusk(e)" 
+                                            class="btn btn-danger custom-width"
+                                            style=" width: 90px !important;">Заявление</button>
+                                </td>
+                                
+                                
                                 </td>
                             </tr>
                         </tbody>
@@ -175,11 +429,13 @@
             </div>
         </div>
 
+
+        <script src="resources/js/helpfunction/FileSaver.js"></script>
         <script src="resources/js/app/hotels-app.js"></script>
         <script src="resources/js/service/otpusk-service.js"></script>
         <script src="resources/js/controller/otpusk-controller.js"></script> 
         <script src="resources/js/service/sotr-service.js"></script>
         <script src="resources/js/controller/sotr-controller.js"></script> 
-       
+        <script src="resources/js/module/json-export-excel.js"></script> 
     </body>
 </html>

@@ -14,13 +14,15 @@ App.controller('ControllerD', ['$scope', 'ServicsD',
         };
 
 
+         self.searchFish='';
+
         self.fetchAllU = function () {
             ServicsD.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert('I here');
-                                alert(JSON.stringify(d));
+                                //alert('I here');
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -100,7 +102,7 @@ App.controller('ControllerD', ['$scope', 'ServicsD',
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

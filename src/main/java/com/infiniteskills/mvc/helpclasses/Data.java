@@ -14,14 +14,14 @@ import java.util.Date;
 public class Data {
     Date dateb;
     Date datee;
-    String typenomerhotel;
-    String idhotel;
+    int typenomerhotel;
+    int idhotel;
 
-    public String getIdhotel() {
+    public int getIdhotel() {
         return idhotel;
     }
 
-    public void setIdhotel(String idhotel) {
+    public void setIdhotel(int idhotel) {
         this.idhotel = idhotel;
     }
 
@@ -41,11 +41,11 @@ public class Data {
         this.datee = datee;
     }
 
-    public String getTypenomerhotel() {
+    public int getTypenomerhotel() {
         return typenomerhotel;
     }
 
-    public void setTypenomerhotel(String typenomerhotel) {
+    public void setTypenomerhotel(int typenomerhotel) {
         this.typenomerhotel = typenomerhotel;
     }
   

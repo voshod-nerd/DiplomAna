@@ -7,6 +7,7 @@ package com.infiniteskills.mvc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -43,7 +44,7 @@ public class Stimostpitan implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Column(name = "sum")
-    private Long sum;
+    private BigInteger sum;
     @OneToMany(mappedBy = "idstoimostpit")
     @JsonIgnore
     private Collection<Progivanie> progivanieCollection;
@@ -69,11 +70,11 @@ public class Stimostpitan implements Serializable {
         this.id = id;
     }
 
-    public Long getSum() {
+    public BigInteger getSum() {
         return sum;
     }
 
-    public void setSum(Long sum) {
+    public void setSum(BigInteger sum) {
         this.sum = sum;
     }
 

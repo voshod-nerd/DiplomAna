@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,6 +37,7 @@ public class Uslug implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -43,6 +47,9 @@ public class Uslug implements Serializable {
     @OneToMany(mappedBy = "iduslug")
     @JsonIgnore
     private Collection<Stoimostuslug> stoimostuslugCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iduslug")
+    @JsonIgnore
+    private Collection<Reestruslug> reestruslugCollection;
 
     public Uslug() {
     }
@@ -79,6 +86,15 @@ public class Uslug implements Serializable {
 
     public void setStoimostuslugCollection(Collection<Stoimostuslug> stoimostuslugCollection) {
         this.stoimostuslugCollection = stoimostuslugCollection;
+    }
+
+    @XmlTransient
+    public Collection<Reestruslug> getReestruslugCollection() {
+        return reestruslugCollection;
+    }
+
+    public void setReestruslugCollection(Collection<Reestruslug> reestruslugCollection) {
+        this.reestruslugCollection = reestruslugCollection;
     }
 
     @Override

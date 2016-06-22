@@ -6,11 +6,13 @@
 package com.infiniteskills.mvc.entity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,11 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Progivanie.findByDatein", query = "SELECT p FROM Progivanie p WHERE p.datein = :datein"),
     @NamedQuery(name = "Progivanie.findByDateout", query = "SELECT p FROM Progivanie p WHERE p.dateout = :dateout"),
     @NamedQuery(name = "Progivanie.findByDopusl", query = "SELECT p FROM Progivanie p WHERE p.dopusl = :dopusl"),
-    @NamedQuery(name = "Progivanie.findByTotalsum", query = "SELECT p FROM Progivanie p WHERE p.totalsum = :totalsum")})
+    @NamedQuery(name = "Progivanie.findByTotalsum", query = "SELECT p FROM Progivanie p WHERE p.totalsum = :totalsum"),
+    @NamedQuery(name = "Progivanie.findByClosed", query = "SELECT p FROM Progivanie p WHERE p.closed = :closed")})
 public class Progivanie implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -48,10 +52,13 @@ public class Progivanie implements Serializable {
     @Column(name = "dateout")
     @Temporal(TemporalType.DATE)
     private Date dateout;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "dopusl")
-    private BigInteger dopusl;
+    private BigDecimal dopusl;
     @Column(name = "totalsum")
-    private BigInteger totalsum;
+    private BigDecimal totalsum;
+    @Column(name = "closed")
+    private Integer closed;
     @JoinColumn(name = "idclient", referencedColumnName = "ID")
     @ManyToOne
     private Client idclient;
@@ -96,20 +103,28 @@ public class Progivanie implements Serializable {
         this.dateout = dateout;
     }
 
-    public BigInteger getDopusl() {
+    public BigDecimal getDopusl() {
         return dopusl;
     }
 
-    public void setDopusl(BigInteger dopusl) {
+    public void setDopusl(BigDecimal dopusl) {
         this.dopusl = dopusl;
     }
 
-    public BigInteger getTotalsum() {
+    public BigDecimal getTotalsum() {
         return totalsum;
     }
 
-    public void setTotalsum(BigInteger totalsum) {
+    public void setTotalsum(BigDecimal totalsum) {
         this.totalsum = totalsum;
+    }
+
+    public Integer getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Integer closed) {
+        this.closed = closed;
     }
 
     public Client getIdclient() {

@@ -32,8 +32,7 @@ App.factory('Servics', ['$http', '$q', function ($http, $q) {
                         );
             },
             updateU: function (unit) {
-                return $http.put('/vc/resthotel/item',
-                        JSON.stringify(unit))
+                return $http.put('/vc/resthotel/item/',JSON.stringify(unit))
                         .then(
                                 function (response) {
                                     return response.data;

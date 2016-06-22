@@ -61,4 +61,7 @@ public class StimostpitanRepositoryImpl implements StoimostpitanRepository {
     public Stimostpitan find(Stimostpitan zav) {
         return em.find(Stimostpitan.class, zav.getId());
     }
+    
+    
+    
 }

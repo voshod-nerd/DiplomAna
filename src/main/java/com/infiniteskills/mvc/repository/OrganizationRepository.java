@@ -25,4 +25,5 @@ import java.util.List;
 
     Organization create(Organization hot);
      Organization findOrganizationByName(String name);
+     Organization findOrganizationByUsername(String usr);
 }

@@ -5,10 +5,8 @@
  */
 package com.infiniteskills.mvc.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.Collection;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,17 +39,15 @@ public class Stoimostuslug implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "summa")
-    private BigInteger summa;
+    private BigDecimal summa;
     @JoinColumn(name = "iduslug", referencedColumnName = "id")
     @ManyToOne
     private Uslug iduslug;
     @JoinColumn(name = "idtarif", referencedColumnName = "id")
     @ManyToOne
     private Tarifz idtarif;
-    @OneToMany(mappedBy = "idstoimostuslig")
-    @JsonIgnore
-    private Collection<Reestruslug> reestruslugCollection;
 
     public Stoimostuslug() {
     }
@@ -70,11 +64,11 @@ public class Stoimostuslug implements Serializable {
         this.id = id;
     }
 
-    public BigInteger getSumma() {
+    public BigDecimal getSumma() {
         return summa;
     }
 
-    public void setSumma(BigInteger summa) {
+    public void setSumma(BigDecimal summa) {
         this.summa = summa;
     }
 
@@ -92,15 +86,6 @@ public class Stoimostuslug implements Serializable {
 
     public void setIdtarif(Tarifz idtarif) {
         this.idtarif = idtarif;
-    }
-
-    @XmlTransient
-    public Collection<Reestruslug> getReestruslugCollection() {
-        return reestruslugCollection;
-    }
-
-    public void setReestruslugCollection(Collection<Reestruslug> reestruslugCollection) {
-        this.reestruslugCollection = reestruslugCollection;
     }
 
     @Override

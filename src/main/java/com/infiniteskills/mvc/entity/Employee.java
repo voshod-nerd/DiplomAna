@@ -5,19 +5,23 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "employee")
@@ -44,8 +48,13 @@ public class Employee implements Serializable {
     @Basic(optional = false)
     @Column(name = "role")
     private String role;
+    @OneToMany(mappedBy = "iduser")
+    @JsonIgnore
+    private Collection<Organization> organizationCollection;
+    @OneToMany(mappedBy = "iduser")
+    @JsonIgnore
+    private Collection<Sotrudnik> sotrudnikCollection;
 
-    
     public Employee() {
     }
 
@@ -90,6 +99,24 @@ public class Employee implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @XmlTransient
+    public Collection<Organization> getOrganizationCollection() {
+        return organizationCollection;
+    }
+
+    public void setOrganizationCollection(Collection<Organization> organizationCollection) {
+        this.organizationCollection = organizationCollection;
+    }
+
+    @XmlTransient
+    public Collection<Sotrudnik> getSotrudnikCollection() {
+        return sotrudnikCollection;
+    }
+
+    public void setSotrudnikCollection(Collection<Sotrudnik> sotrudnikCollection) {
+        this.sotrudnikCollection = sotrudnikCollection;
     }
 
     @Override

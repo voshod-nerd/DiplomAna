@@ -52,7 +52,6 @@ public class Hotel implements Serializable {
     @OneToMany(mappedBy = "idgostin")
     @JsonIgnore
     private Collection<Nomerhotel> nomerhotelCollection;
-   
 
     public Hotel() {
     }
@@ -102,8 +101,6 @@ public class Hotel implements Serializable {
     public void setNomerhotelCollection(Collection<Nomerhotel> nomerhotelCollection) {
         this.nomerhotelCollection = nomerhotelCollection;
     }
-
- 
 
     @Override
     public int hashCode() {

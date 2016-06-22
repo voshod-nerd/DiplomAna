@@ -1,5 +1,6 @@
 package com.infiniteskills.mvc.repository;
 
+import com.infiniteskills.mvc.entity.Hotel;
 import java.util.List;
 
 
@@ -24,6 +25,13 @@ public interface NomerhotelRepository {
 
     Nomerhotel create(Nomerhotel hot);
     
-    Nomerhotel getFreeForReserve(Date db,Date de,String typenomer,String hotel);
+    List<Nomerhotel> getFreeForReserve(Date db,Date de,int typenomer,int hotel);
+    List<Nomerhotel> getFree();
+    Nomerhotel findById(int id);
+    List<Nomerhotel> getNomerHotelByHotel(String hotel);
+    List<Nomerhotel> getProgByHotel(Hotel hotel);
+    List<Nomerhotel> getBronByHotel(Hotel hotel);
+    List<Nomerhotel> getFreeByHotel(Hotel hotel);
+    List<Nomerhotel> getRemontByHotel(Hotel hotel);
     
 }

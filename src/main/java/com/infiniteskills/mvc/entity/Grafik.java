@@ -44,12 +44,12 @@ public class Grafik implements Serializable {
     @Column(name = "dayd")
     @Temporal(TemporalType.DATE)
     private Date dayd;
-    @JoinColumn(name = "idhotel", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Hotel idhotel;
     @JoinColumn(name = "idsotrudnik", referencedColumnName = "ID")
     @ManyToOne
     private Sotrudnik idsotrudnik;
+    @JoinColumn(name = "idhotel", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Hotel idhotel;
 
     public Grafik() {
     }
@@ -74,20 +74,20 @@ public class Grafik implements Serializable {
         this.dayd = dayd;
     }
 
-    public Hotel getIdhotel() {
-        return idhotel;
-    }
-
-    public void setIdhotel(Hotel idhotel) {
-        this.idhotel = idhotel;
-    }
-
     public Sotrudnik getIdsotrudnik() {
         return idsotrudnik;
     }
 
     public void setIdsotrudnik(Sotrudnik idsotrudnik) {
         this.idsotrudnik = idsotrudnik;
+    }
+
+    public Hotel getIdhotel() {
+        return idhotel;
+    }
+
+    public void setIdhotel(Hotel idhotel) {
+        this.idhotel = idhotel;
     }
 
     @Override

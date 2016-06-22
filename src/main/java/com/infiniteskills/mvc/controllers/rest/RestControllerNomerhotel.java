@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.infiniteskills.mvc.helpclasses.Data;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 /**
  *
@@ -35,11 +35,22 @@ public class RestControllerNomerhotel {
         this.uService = uService;
     }
 
-     @RequestMapping(method = RequestMethod.POST,value= "/{items}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Nomerhotel getFreeUnitList(@RequestBody Data zav) {
-        System.out.println(zav.getTypenomerhotel());
-        return uService.getFreeForReserve(zav.getDateb(), zav.getDatee(),zav.getTypenomerhotel(),zav.getTypenomerhotel());
+     @RequestMapping(method = RequestMethod.POST,value= "/items",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Nomerhotel> getFreeUnitList(@RequestBody Data zav) {
+        System.out.println("Here ="+zav.getDateb());
+        List<Nomerhotel> ls = uService.getFreeForReserve(zav.getDateb(), zav.getDatee(),zav.getTypenomerhotel(),zav.getIdhotel());
+        System.out.println("Here ="+ls.size());
+        return uService.getFreeForReserve(zav.getDateb(), zav.getDatee(),zav.getTypenomerhotel(),zav.getIdhotel());
+       
     }
+    
+    @RequestMapping(method = RequestMethod.GET,value= "/getfree")
+    public List<Nomerhotel> getFreeOnToday() {
+        return uService.getFree();
+       
+    }
+    
+    
      
     
      @RequestMapping(method = RequestMethod.GET)
@@ -58,6 +69,7 @@ public class RestControllerNomerhotel {
             path = ITEM_PATH,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Nomerhotel updateU(@RequestBody Nomerhotel zav) {
+        System.out.println("I am here");
         return uService.update(zav);
     }
 

@@ -6,6 +6,7 @@
 package com.infiniteskills.mvc.repository;
 
 import com.infiniteskills.mvc.entity.Client;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * @author Юыху
  */
 public interface ClientRepository {
-     List<Client> findAll();
+    List<Client> findAll();
 
     Client update(Client zav);
 
@@ -24,4 +25,6 @@ public interface ClientRepository {
     Client save(Client cl);
 
     void delete(Client cl);
+    Client findByNameAndDr(String fio,Date dr);
+    
 }

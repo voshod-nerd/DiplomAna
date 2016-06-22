@@ -16,6 +16,7 @@ import com.infiniteskills.mvc.repository.OrganizationRepository;
 import javax.persistence.TypedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
 
 /**
  *
@@ -80,6 +81,19 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
         
     }
     
+    
+    @Override
+    public Organization findOrganizationByUsername(String usr){
+     Query query = em.createNativeQuery("select * from Organization u where u.iduser=?1", Organization.class);
+      
+		query.setParameter(1, usr);
+		try {
+			return (Organization)query.getSingleResult();
+		} catch (NonUniqueResultException | NoResultException e) {
+			return null;
+		}
+        
+    }
     
 
 }

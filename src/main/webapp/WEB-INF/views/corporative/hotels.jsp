@@ -1,15 +1,10 @@
-<%-- 
-    Document   : hotels
-    Created on : 01.05.2016, 16:21:44
-    Author     : Îëåã
---%>
-
-<%@page contentType="text/html" pageEncoding="windows-1251"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Ñëóæåáíûé ñàéò êîìïëåêñà ãîñòèíèö</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ð¡Ð»ÑƒÐ¶ÐµÐ±Ð½Ñ‹Ð¹ ÑÐ°Ð¹Ñ‚ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ° Ð³Ð¾ÑÑ‚Ð¸Ð½Ð¸Ñ†</title>
 
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -22,6 +17,10 @@
 
         <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB --> 
+       
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
         <!-- Angular JS -->
         <script src="resources/js/angular.min.js" ></script>
 
@@ -31,7 +30,7 @@
        <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="/vc/home" class="navbar-brand">Àäìèíêà (Ãëàâíàÿ)</a>
+                    <a href="/vc/home" class="navbar-brand">ÐÐ´Ð¼Ð¸Ð½ÐºÐ° (Ð“Ð»Ð°Ð²Ð½Ð°Ñ)</a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -40,138 +39,385 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav">
+                        <sec:authorize access="hasRole('ROLE_DIRECTOR')">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Cïèñîê äåéñâèé<span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="themes">
-                        <li><a href="orders">Ïîäà÷à è ðåäàêòèðîâàíèå ñïèñêà çàÿâîê</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà îòåëåé</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà òèïà íîìåðîâ</a></li>
-                        <li><a href="organiz" >Ðåäàêòèðîâàíèå ñïèñêà îðãàíèçàöèé</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà òèïîâ çàÿâîê</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà òèïîâ ïèòàíèÿ</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà äîëæíîñòåé</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà ðàáîò</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà îðãàíèçàöèé</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñïèñêà ïðîãðàìì</a></li>
-                        <li><a href="hotel" >Ðååñòð ðåìîíòíûú ðàáîò</a></li>
-                        <li><a href="hotel" >Ðåäàêòèðîâàíèå ñòîèìîñòè óñëóã</a></li>
-                        <li><a href="hotel" >Ðååñòð ñòîèìîñòü íîìåðîâ</a></li>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¡Ð¿Ñ€Ð°Ð²Ð¾Ñ‡Ð½Ð¸ÐºÐ¸<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Ð“Ð¾ÑÑ‚Ð¸Ð½Ð¸Ñ†Ñ‹</a></li>
+                                        <li><a href="typenomerhot" >Ð¢Ð¸Ð¿Ñ‹ Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð²</a></li>
+                                        <li><a href="uslug" >Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ ÑƒÑÐ»ÑƒÐ³Ð¸</a></li>
+                                        <li><a href="typezav" >Ð¢Ð¸Ð¿Ñ‹ Ð·Ð°ÑÐ²Ð¾Ðº</a></li>
+                                        <li><a href="organiz" >ÐžÑ€Ð³Ð°Ð½Ð¸Ð·Ð°Ñ†Ð¸Ð¸</a></li>
+                                        <li><a href="programs" >ÐŸÑƒÑÐºÐ¾Ð²Ñ‹Ðµ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹</a></li>
+                                        <li><a href="pitan" >Ð’Ð¸Ð´Ñ‹ Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ñ</a></li>
+                                        <li><a href="dolgnost" >Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚Ñ</a></li>
                                 <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">ÐÐ¾Ð¼ÐµÑ€Ð°<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >ÐÐ¾Ð¼ÐµÑ€Ð°</a></li>
+                                        <li> <a href="orders" >ÐŸÐ»Ð°Ð½ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ñ… Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ñ‹Ñ… Ñ€Ð°Ð±Ð¾Ñ‚</a></li>
+                                          <li class="divider"></li>
                             </ul>
                         </li>
-
-                        <li>
-
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¸<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¸</a></li>
+                                        <li><a href="otpusk" >ÐžÑ‚Ð¿ÑƒÑÐºÐ°</a></li>
+                                        <li><a href="grafik" >Ð“Ñ€Ð°Ñ„Ð¸Ðº Ð´ÐµÐ¶ÑƒÑ€ÑÑ‚Ð²</a></li>
+                                          <li class="divider"></li>
+                            </ul>
                         </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">ÐšÐ»Ð¸ÐµÐ½Ñ‚Ñ‹<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >ÐšÐ»Ð¸ÐµÐ½Ñ‚Ñ‹</a></li>
+                                        <li><a href="bronz" >Ð‘Ñ€Ð¾Ð½Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ</a></li>
+                                        <li><a href="reestuslug" >Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ ÑƒÑÐ»ÑƒÐ³Ð¸</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¢Ð°Ñ€Ð¸Ñ„Ñ‹<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Ð¢Ð¸Ð¿Ñ‹ Ñ‚Ð°Ñ€Ð¸Ñ„Ð¾Ð²</a></li>
+                                        <li><a href="stoimostpitan" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ñ</a></li>
+                                        <li><a href="stoimostnomer" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ñ‚Ð¸Ð¿Ð¾Ð² Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð²</a></li>
+                                        <li><a href="stoimostuslug" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… ÑƒÑÐ»ÑƒÐ³</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+                        
+                        
+                         <sec:authorize access="hasRole('ROLE_ZAM')">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¡Ð¿Ñ€Ð°Ð²Ð¾Ñ‡Ð½Ð¸ÐºÐ¸<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Ð“Ð¾ÑÑ‚Ð¸Ð½Ð¸Ñ†Ñ‹</a></li>
+                                        <li><a href="typenomerhot" >Ð¢Ð¸Ð¿Ñ‹ Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð²</a></li>
+                                        <li><a href="uslug" >Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ ÑƒÑÐ»ÑƒÐ³Ð¸</a></li>
+                                        <li><a href="typezav" >Ð¢Ð¸Ð¿Ñ‹ Ð·Ð°ÑÐ²Ð¾Ðº</a></li>
+                                        <li><a href="organiz" >ÐžÑ€Ð³Ð°Ð½Ð¸Ð·Ð°Ñ†Ð¸Ð¸</a></li>
+                                        <li><a href="programs" >ÐŸÑƒÑÐºÐ¾Ð²Ñ‹Ðµ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹</a></li>
+                                        <li><a href="pitan" >Ð’Ð¸Ð´Ñ‹ Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ñ</a></li>
+                                        <li><a href="dolgnost" >Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚Ñ</a></li>
+                                <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">ÐÐ¾Ð¼ÐµÑ€Ð°<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >ÐÐ¾Ð¼ÐµÑ€Ð°</a></li>
+                                        <li> <a href="orders" >ÐŸÐ»Ð°Ð½ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ñ… Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ñ‹Ñ… Ñ€Ð°Ð±Ð¾Ñ‚</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¸<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¸</a></li>
+                                        <li><a href="otpusk" >ÐžÑ‚Ð¿ÑƒÑÐºÐ°</a></li>
+                                        <li><a href="grafik" >Ð“Ñ€Ð°Ñ„Ð¸Ðº Ð´ÐµÐ¶ÑƒÑ€ÑÑ‚Ð²</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">ÐšÐ»Ð¸ÐµÐ½Ñ‚Ñ‹<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >ÐšÐ»Ð¸ÐµÐ½Ñ‚Ñ‹</a></li>
+                                        <li><a href="bronz" >Ð‘Ñ€Ð¾Ð½Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ</a></li>
+                                        <li><a href="reestuslug" >Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ ÑƒÑÐ»ÑƒÐ³Ð¸</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¢Ð°Ñ€Ð¸Ñ„Ñ‹<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Ð¢Ð¸Ð¿Ñ‹ Ñ‚Ð°Ñ€Ð¸Ñ„Ð¾Ð²</a></li>
+                                        <li><a href="stoimostpitan" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ñ</a></li>
+                                        <li><a href="stoimostnomer" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ñ‚Ð¸Ð¿Ð¾Ð² Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð²</a></li>
+                                        <li><a href="stoimostuslug" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… ÑƒÑÐ»ÑƒÐ³</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¡Ð¿Ñ€Ð°Ð²Ð¾Ñ‡Ð½Ð¸ÐºÐ¸<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">                        
+                                        <li><a href="hotels" >Ð“Ð¾ÑÑ‚Ð¸Ð½Ð¸Ñ†Ñ‹</a></li>
+                                        <li><a href="typenomerhot" >Ð¢Ð¸Ð¿Ñ‹ Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð²</a></li>
+                                        <li><a href="uslug" >Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ ÑƒÑÐ»ÑƒÐ³Ð¸</a></li>
+                                        <li><a href="typezav" >Ð¢Ð¸Ð¿Ñ‹ Ð·Ð°ÑÐ²Ð¾Ðº</a></li>
+                                        <li><a href="organiz" >ÐžÑ€Ð³Ð°Ð½Ð¸Ð·Ð°Ñ†Ð¸Ð¸</a></li>
+                                        <li><a href="programs" >ÐŸÑƒÑÐºÐ¾Ð²Ñ‹Ðµ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹</a></li>
+                                        <li><a href="pitan" >Ð’Ð¸Ð´Ñ‹ Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ñ</a></li>
+                                        <li><a href="dolgnost" >Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚Ñ</a></li>
+                                <li class="divider"></li>
+
+                            </ul>
+                          
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">ÐÐ¾Ð¼ÐµÑ€Ð°<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                        <li><a href="nomer" >ÐÐ¾Ð¼ÐµÑ€Ð°</a></li>
+                                        <li> <a href="orders" >ÐŸÐ»Ð°Ð½ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ñ… Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ñ‹Ñ… Ñ€Ð°Ð±Ð¾Ñ‚</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¸<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        <li><a href="sotrudnik" >Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¸</a></li>
+                                        <li><a href="otpusk" >ÐžÑ‚Ð¿ÑƒÑÐºÐ°</a></li>
+                                        <li><a href="grafik" >Ð“Ñ€Ð°Ñ„Ð¸Ðº Ð´ÐµÐ¶ÑƒÑ€ÑÑ‚Ð²</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">ÐšÐ»Ð¸ÐµÐ½Ñ‚Ñ‹<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                        <li><a href="client" >ÐšÐ»Ð¸ÐµÐ½Ñ‚Ñ‹</a></li>
+                                        <li><a href="bronz" >Ð‘Ñ€Ð¾Ð½Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ</a></li>
+                                        <li><a href="reestuslug" >Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ ÑƒÑÐ»ÑƒÐ³Ð¸</a></li> 
+                            </ul>
+                        </li>
+                        
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Ð¢Ð°Ñ€Ð¸Ñ„Ñ‹<span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                             
+                                         
+                                        
+                                       <li><a href="tarif" >Ð¢Ð¸Ð¿Ñ‹ Ñ‚Ð°Ñ€Ð¸Ñ„Ð¾Ð²</a></li>
+                                        <li><a href="stoimostpitan" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¿Ð¸Ñ‚Ð°Ð½Ð¸Ñ</a></li>
+                                        <li><a href="stoimostnomer" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ñ‚Ð¸Ð¿Ð¾Ð² Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð²</a></li>
+                                        <li><a href="stoimostuslug" >Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… ÑƒÑÐ»ÑƒÐ³</a></li>
+                                          <li class="divider"></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                           </sec:authorize>  
+
+                       
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      
-                        <li><a href="/vc" target="_blank">Ãëàâíàÿ (îáùåäîñòóïíàÿ)</a></li>
+
+                        <li><a href="index" target="_blank">Ð“Ð»Ð°Ð²Ð½Ð°Ñ (Ð¾Ð±Ñ‰ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð°Ñ)</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         
         
-        
+         
+
+
         <br>
         <br>
-        
-    <div> 
-          <div class="generic-container" ng-controller="Controller as ctrl">
-            <div class="panel panel-default">
-                <div class="panel-heading"><span class="lead">Ôîðìà ðåäàêòèðîâàíèÿ ñïèñêà ãîñòèíèö</span></div>
-                <div class="formcontainer">
-                    <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                        <input type="hidden"  ng-model="ctrl.unit.id" />
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label class="col-md-2 control-lable" for="lastname">Ìåñòîïîëîæåíèå</label>
-                                <div class="col-md-7">
-                                    <input type="text" ng-model="ctrl.unit.location" 
-                                           id="lastname" 
-                                           class="username form-control input-sm" 
-                                           placeholder="Ââåäèòå ìåñòîïîëîæåíèå" 
-                                           required ng-minlength="1"/>
-                                    <div class="has-error" ng-show="myForm.$dirty">
-                                        <span ng-show="myForm.name.$error.required">Ýòî îáÿçàòåëüíîå ïîëå</span>
-                                        <span ng-show="myForm.name.$error.minlength">Ìèíèìàëüíàÿ äëèíà - 1</span>
-                                        <span ng-show="myForm.name.$invalid">Íåâåðíîå çíà÷åíèå â ïîëå</span>
+
+        <div> 
+            <div class="generic-container" ng-controller="Controller as ctrl">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="lead">Ð¤Ð¾Ñ€Ð¼Ð° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¾ Ð³Ð¾ÑÑ‚Ð¸Ð½Ð¸Ñ†Ðµ</span></div>
+                    <div class="formcontainer">
+                        <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                            <input type="hidden"  ng-model="ctrl.unit.id" />
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label class="col-md-2 control-lable" for="lastname">ÐœÐµÑÑ‚Ð¾Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ</label>
+                                    <div class="col-md-7">
+                                        <input type="text" ng-model="ctrl.unit.location" 
+                                               id="lastname" 
+                                               class="username form-control input-sm" 
+                                               placeholder="Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¼ÐµÑÑ‚Ð¾Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ" 
+                                               required ng-minlength="1"/>
+                                        <div class="has-error" ng-show="myForm.$dirty">
+                                            <span ng-show="myForm.name.$error.required">Ð­Ñ‚Ð¾ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð¿Ð¾Ð»Ðµ</span>
+                                            <span ng-show="myForm.name.$error.minlength">ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ Ð´Ð»Ð¸Ð½Ð° - 1</span>
+                                            <span ng-show="myForm.name.$invalid">ÐÐµÐ²ÐµÑ€Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð¿Ð¾Ð»Ðµ</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label class="col-md-2 control-lable" for="firstname">Íàèìåíîâàíèå</label>
-                                <div class="col-md-7">
-                                    <input type="text" ng-model="ctrl.unit.name" 
-                                           id="firstname" 
-                                           class="username form-control input-sm" 
-                                           placeholder="Ââåäèòå íàèìåíîâàíèå" 
-                                           required ng-minlength="2"/>
-                                    <div class="has-error" ng-show="myForm.$dirty">
-                                        <span ng-show="myForm.name.$error.required">Ýòî îáÿçàòåëüíîå ïîëå</span>
-                                        <span ng-show="myForm.name.$error.minlength">Ìèíèìàëüíàÿ äëèíà - 2</span>
-                                        <span ng-show="myForm.name.$invalid">Íåâåðíîå çíà÷åíèå â ïîëå</span>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label class="col-md-2 control-lable" for="firstname">ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ</label>
+                                    <div class="col-md-7">
+                                        <input type="text" ng-model="ctrl.unit.name" 
+                                               id="firstname" 
+                                               class="username form-control input-sm" 
+                                               placeholder="Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ" 
+                                               required ng-minlength="2"/>
+                                        <div class="has-error" ng-show="myForm.$dirty">
+                                            <span ng-show="myForm.name.$error.required">Ð­Ñ‚Ð¾ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð¿Ð¾Ð»Ðµ</span>
+                                            <span ng-show="myForm.name.$error.minlength">ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ Ð´Ð»Ð¸Ð½Ð° - 2</span>
+                                            <span ng-show="myForm.name.$invalid">ÐÐµÐ²ÐµÑ€Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð¿Ð¾Ð»Ðµ</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                       
-                       
-                        <div class="row">
-                            <div class="form-actions floatRight">
-                                <input type="submit"  
-                                       value="{{!ctrl.unit.id ? 'Äîáàâèòü' : 'Èçìåíèòü'}}" 
-                                       class="btn btn-primary btn-sm" 
-                                       ng-disabled="myForm.$invalid">
-                                <button type="button" 
-                                        ng-click="ctrl.reset()" 
-                                        class="btn btn-warning btn-sm" 
-                                        ng-disabled="myForm.$pristine">Ñáðîñèòü</button>
+
+
+
+                            <div class="row">
+                                <div class="form-actions floatRight">
+                                    <input type="submit"  
+                                           value="{{!ctrl.unit.id ? 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ' : 'Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ'}}" 
+                                           class="btn btn-primary btn-sm" 
+                                           ng-disabled="myForm.$invalid">
+                                    <button type="button" 
+                                            ng-click="ctrl.reset()" 
+                                            class="btn btn-warning btn-sm" 
+                                            ng-disabled="myForm.$pristine">Ð¡Ð±Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div
-            <!-- Default panel contents -->
-            <div class="panel-heading"><span class="lead">Ñïèñîê îòåëåé</span></div>
-            <div class="tablecontainer">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Ìåñòîïîëîæåíèå</th>
-                            <th>Íàçâàíèå</th>
-                            
-                            <th width="20%"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="e in ctrl.units">
-                            <td><span ng-bind="e.location"></span></td>
-                            <td><span ng-bind="e.name"></span></td>
-                           
-                            <td>
-                                <button type="button" ng-click="ctrl.edit(e)" 
-                                        class="btn btn-success custom-width"
-                                        style=" width: 90px !important;">Èçìåíèòü</button>  
-                                <button type="button" 
-                                        ng-click="ctrl.deleteU(e)" 
-                                        class="btn btn-danger custom-width"
-                                        style=" width: 90px !important;">Óäàëèòü</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+
+                
+
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control" placeholder="ÐŸÐ¾Ð¸ÑÐº Ð¿Ð¾ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ" ng-model="ctrl.searchFish">
+                        </div>      
+                    </div>
+                </form>
+                
+              
+
+
+                <!-- Default panel contents -->
+                <div class="panel-heading"><span class="lead">Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð³Ð¾ÑÑ‚Ð¸Ð½Ð¸Ñ† Ð³Ð¾ÑÑ‚Ð¸Ð½Ð¸Ñ‡Ð½Ð¾Ð³Ð¾ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ°</span></div>
+                <div class="tablecontainer">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a href="#" ng-click="sortType = 'location'; sortReverse = !sortReverse">
+                                        ÐœÐµÑÑ‚Ð¾Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ 
+                                        <span ng-show="sortType == 'location' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'location' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+
+                                </th>
+                                <th>
+                                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                                        ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ
+                                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>    
+                                    
+                                </th>
+
+                                <th width="20%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="e in ctrl.units | orderBy:sortType:sortReverse | filter:ctrl.searchFish">
+                                <td><span ng-bind="e.location"></span></td>
+                                <td><span ng-bind="e.name"></span></td>
+
+                                <td>
+                                    <button type="button" ng-click="ctrl.edit(e)" 
+                                            class="btn btn-success custom-width"
+                                            style=" width: 90px !important;">Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ</button>  
+                                    <button type="button" 
+                                            ng-click="ctrl.deleteU(e)" 
+                                            class="btn btn-danger custom-width"
+                                            style=" width: 90px !important;">Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>   
+                </div>
+
+
+
+
+
             </div>
         </div>
-    </div>
-          
-         <script src="resources/js/app/hotels-app.js"></script>
+        <script src="resources/js/helpfunction/FileSaver.js"></script>
+        <script src="resources/js/app/hotels-app.js"></script>
         <script src="resources/js/service/hotels-service.js"></script>
         <script src="resources/js/controller/hotels-controller.js"></script> 
+        <script src="resources/js/module/json-export-excel.js"></script> 
     </body>
 </html>

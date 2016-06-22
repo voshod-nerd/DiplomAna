@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.repository;
 
+import com.infiniteskills.mvc.entity.Nomerhotel;
 import com.infiniteskills.mvc.entity.Typenomerhotel;
 import java.util.List;
 
@@ -24,4 +25,5 @@ public interface TypeNomerHotelRepository {
     Typenomerhotel save(Typenomerhotel rab);
 
     void delete(Typenomerhotel rab); 
+    Typenomerhotel getTypeNomerByIdnomer(Nomerhotel nomer);
 }

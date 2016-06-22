@@ -10,7 +10,11 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,12 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Viza.findById", query = "SELECT v FROM Viza v WHERE v.id = :id"),
     @NamedQuery(name = "Viza.findByBeg", query = "SELECT v FROM Viza v WHERE v.beg = :beg"),
     @NamedQuery(name = "Viza.findByEnd", query = "SELECT v FROM Viza v WHERE v.end = :end"),
-    @NamedQuery(name = "Viza.findById\u0441lient", query = "SELECT v FROM Viza v WHERE v.id\u0441lient = :id\u0441lient"),
     @NamedQuery(name = "Viza.findByNumber", query = "SELECT v FROM Viza v WHERE v.number = :number")})
 public class Viza implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
@@ -45,10 +49,11 @@ public class Viza implements Serializable {
     @Column(name = "END")
     @Temporal(TemporalType.DATE)
     private Date end;
-    @Column(name = "Idclient")
-    private Integer idñlient;
     @Column(name = "NUMBER")
     private String number;
+    @JoinColumn(name = "Idclient", referencedColumnName = "ID")
+    @ManyToOne
+    private Client idclient;
 
     public Viza() {
     }
@@ -81,20 +86,20 @@ public class Viza implements Serializable {
         this.end = end;
     }
 
-    public Integer getIdñlient() {
-        return idñlient;
-    }
-
-    public void setIdñlient(Integer idñlient) {
-        this.idñlient = idñlient;
-    }
-
     public String getNumber() {
         return number;
     }
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public Client getIdclient() {
+        return idclient;
+    }
+
+    public void setIdclient(Client idclient) {
+        this.idclient = idclient;
     }
 
     @Override

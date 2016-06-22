@@ -33,7 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Bron.findAll", query = "SELECT b FROM Bron b"),
     @NamedQuery(name = "Bron.findById", query = "SELECT b FROM Bron b WHERE b.id = :id"),
     @NamedQuery(name = "Bron.findByDateb", query = "SELECT b FROM Bron b WHERE b.dateb = :dateb"),
-    @NamedQuery(name = "Bron.findByDatee", query = "SELECT b FROM Bron b WHERE b.datee = :datee")})
+    @NamedQuery(name = "Bron.findByDatee", query = "SELECT b FROM Bron b WHERE b.datee = :datee"),
+    @NamedQuery(name = "Bron.findByClosed", query = "SELECT b FROM Bron b WHERE b.closed = :closed"),
+    @NamedQuery(name = "Bron.findBySumma", query = "SELECT b FROM Bron b WHERE b.summa = :summa")})
 public class Bron implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,12 +50,19 @@ public class Bron implements Serializable {
     @Column(name = "datee")
     @Temporal(TemporalType.DATE)
     private Date datee;
+    @Column(name = "closed")
+    private Integer closed;
+    @Column(name = "summa")
+    private Long summa;
     @JoinColumn(name = "idnomer", referencedColumnName = "ID")
     @ManyToOne
     private Nomerhotel idnomer;
     @JoinColumn(name = "idclient", referencedColumnName = "ID")
     @ManyToOne
     private Client idclient;
+    @JoinColumn(name = "idorg", referencedColumnName = "ID")
+    @ManyToOne
+    private Organization idorg;
 
     public Bron() {
     }
@@ -86,6 +95,22 @@ public class Bron implements Serializable {
         this.datee = datee;
     }
 
+    public Integer getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Integer closed) {
+        this.closed = closed;
+    }
+
+    public Long getSumma() {
+        return summa;
+    }
+
+    public void setSumma(Long summa) {
+        this.summa = summa;
+    }
+
     public Nomerhotel getIdnomer() {
         return idnomer;
     }
@@ -100,6 +125,14 @@ public class Bron implements Serializable {
 
     public void setIdclient(Client idclient) {
         this.idclient = idclient;
+    }
+
+    public Organization getIdorg() {
+        return idorg;
+    }
+
+    public void setIdorg(Organization idorg) {
+        this.idorg = idorg;
     }
 
     @Override

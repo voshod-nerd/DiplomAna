@@ -11,10 +11,7 @@ App.controller('ControllerNomer', ['$scope', 'ServiceNomer',
         self.block3 = 'none';
         self.block4 = 'none';
        
-       
-       
-        
-
+      
         self.unit = {
             id: null,
             number: '',
@@ -55,38 +52,54 @@ App.controller('ControllerNomer', ['$scope', 'ServiceNomer',
                 self.block4 = 'inline-block';
             }
         };
+         
+         
+        self.datas=[]; 
+        
+        
+            self.route = function(id) {
+                
+                var db=new Date(self.data.dateb);
+                var de=new Date(self.data.datee);
+                
+                
+                //var str = 'pay';
+                var str = 'pay?id='+id+'&dateb='+db.toUTCString()+'&datee='+de.toUTCString();
+                
+                window.location.href = str;
+                
+               // location.href(str);   
+            };
 
-
-      
+            self.nomers=[];
            
-            self.fetchFreeU = function (data) {  
+            self.fetchFreeU = function () {  
                 
             self.block="inline-block";    
-            data.dateb = new Date(data.dateb);
-            data.datee = new Date(data.datee);
-            data.typenomerhotel=JSON.stringify(data.typenomerhotel);
-            data.idhotel=JSON.stringify(data.idhotel);
-            //alert(JSON.stringify(data));
-            ServiceNomer.fetchFreeU(data)
+            self.data.dateb = new Date( self.data.dateb);
+            self.data.datee = new Date( self.data.datee);
+            self.data.typenomerhotel= self.data.typenomerhotel;
+            self.data.idhotel=self.data.idhotel;
+            ServiceNomer.fetchFreeU(self.data)
                     .then(
-                            function (d) {
-                              
-                                
-                                self.units = d;
-                               
-                                    alert(d);                          
+                            function (d) { 
+                                console.info(JSON.stringify(d));
+                                self.nomers = d;   
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
                             }
                     );
         };
+        
+        
+        
         self.fetchAllU = function () {
             ServiceNomer.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
-                                //alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -158,7 +171,7 @@ App.controller('ControllerNomer', ['$scope', 'ServiceNomer',
                     JSON.parse(self.unit.idgostin) : null;
             var pit = self.unit.typenomer !== null ?
                     JSON.parse(self.unit.typenomer) : null;
-            alert(tar);
+           
             self.unit.idgostin = tar;
             self.unit.typenomer = pit;
             if (self.unit.id === null) {

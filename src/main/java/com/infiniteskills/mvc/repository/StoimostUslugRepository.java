@@ -5,7 +5,9 @@
  */
 package com.infiniteskills.mvc.repository;
 
+import com.infiniteskills.mvc.entity.Client;
 import com.infiniteskills.mvc.entity.Stoimostuslug;
+import com.infiniteskills.mvc.entity.Uslug;
 import java.util.List;
 
 /**
@@ -24,4 +26,6 @@ public interface StoimostUslugRepository {
     Stoimostuslug save(Stoimostuslug rab);
 
     void delete(Stoimostuslug rab); 
+    Stoimostuslug   getListUslugByIdUslug(Uslug usl);
+    Stoimostuslug getStoimUslugByClientAndIdUslug(Uslug usl,Client cl);
 }

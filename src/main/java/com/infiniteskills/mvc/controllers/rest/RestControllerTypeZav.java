@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(path = _PATH19,produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestControllerTypeZav {
+public class RestControllerTypeZav {   
     public static final String _PATH19 = "/resttypezav";
     public static final String ITEM_PATH = "/item";
     
@@ -51,7 +51,8 @@ public class RestControllerTypeZav {
             path = ITEM_PATH,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Typeza updateU(@RequestBody Typeza zav) {
-        return uService.update(zav);
+        System.out.println("WWW");
+         return uService.update(zav);
     }
 
     @RequestMapping(method = RequestMethod.DELETE,

@@ -13,7 +13,7 @@ App.controller('ControllerStoimPitan', ['$scope', 'ServicsStoimostPitan',
             sum:'' 
         };
 
-
+       self.searchFish='';
 
 
         self.units = [];
@@ -24,7 +24,7 @@ App.controller('ControllerStoimPitan', ['$scope', 'ServicsStoimostPitan',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');

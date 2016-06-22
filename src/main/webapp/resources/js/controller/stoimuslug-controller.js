@@ -11,8 +11,13 @@ App.controller('ControllerStoimUslug', ['$scope', 'ServicsStoimostUslug',
             idtarif:null,
             idtuslug:null,
             summa:''
-          
         };
+        
+        self.sortType = 'location'; // set the default sort type
+        self.sortReverse = false;  // set the default sort order
+        self.searchFish = '';     // set the default search/filter term
+        
+        
         self.units = [];
        
 
@@ -21,7 +26,7 @@ App.controller('ControllerStoimUslug', ['$scope', 'ServicsStoimostUslug',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -65,7 +70,7 @@ App.controller('ControllerStoimUslug', ['$scope', 'ServicsStoimostUslug',
         
 
         self.edit = function (unit) {
-            console.log('Unit name to be edited', unit);
+             console.log('Unit name to be edited', unit);
              var tar = (unit.idtarif !== null) ?
              JSON.stringify(unit.idtarif) : null;
              var pit = (unit.iduslug !== null) ?
@@ -95,7 +100,7 @@ App.controller('ControllerStoimUslug', ['$scope', 'ServicsStoimostUslug',
             JSON.parse(self.unit.idtarif) : null;
             var pit = self.unit.iduslug !== null ?
             JSON.parse(self.unit.iduslug) : null;
-            alert(tar);
+           
             self.unit.idtarif = tar;
             self.unit.iduslug = pit; 
             if (self.unit.id === null) {

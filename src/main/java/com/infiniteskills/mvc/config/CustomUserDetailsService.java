@@ -6,7 +6,7 @@
 package com.infiniteskills.mvc.config;
 
 import com.infiniteskills.mvc.entity.Employee;
-import com.infiniteskills.mvc.entity.UserRoles;
+
 import com.infiniteskills.mvc.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,8 +43,13 @@ public class CustomUserDetailsService implements UserDetailsService{
                 System.out.println(user.getPassword());
                 System.out.println(user.getRole());
                 
-                List<String> ls= userService.getAllRoles();
-                 System.out.println(ls.size());
+                
+               
+                List<String> list = new ArrayList<String>();
+                
+                list.add(user.getRole());
+                System.out.println("111 "+user.getRole());
+                
                 
 		if(user == null){
                    
@@ -52,7 +57,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		}
                 
                 
-                List<GrantedAuthority> authorities = buildUserAuthority(userService.getAllRoles());
+                List<GrantedAuthority> authorities = buildUserAuthority(list);
 		//return new SecurityUser(user);
                  
              return buildUserForAuthentication(user, authorities);
@@ -67,7 +72,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 
 	private List<GrantedAuthority> buildUserAuthority(Collection<String> userRoles) {
                 
-                 System.out.println("2f");
+                System.out.println("2f");
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
              
 		// Build user's authorities

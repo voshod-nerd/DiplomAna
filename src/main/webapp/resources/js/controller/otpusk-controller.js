@@ -12,11 +12,21 @@ App.controller('ControllerOtpusk', ['$scope', 'ServicsOtpusk',
             dateb: null,
             dateend: null
         };
-
+    
+         self.sortType = 'idsotr.fio'; // set the default sort type
+         self.sortReverse = false;  // set the default sort order
+         self.searchFish = '';     // set the default search/filter term
 
 
 
         self.units = [];
+        
+        
+        self.otpusk = function (e) 
+        {
+            
+            window.open('report/otpusk/'+e.id);
+        }
 
 
         self.fetchAllU = function () {
@@ -24,7 +34,7 @@ App.controller('ControllerOtpusk', ['$scope', 'ServicsOtpusk',
                     .then(
                             function (d) {
                                 self.units = d;
-                                alert(JSON.stringify(d));
+                                console.info(JSON.stringify(d));
                             },
                             function (errResponse) {
                                 console.error('Error while fetching U(controller)');
@@ -35,7 +45,7 @@ App.controller('ControllerOtpusk', ['$scope', 'ServicsOtpusk',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            v.createU(unit)
+            ServicsOtpusk.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {

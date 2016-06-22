@@ -50,7 +50,7 @@
                     <ul class="nav navbar-nav navbar-right">
 
                         <li><a href="contact" >Контакты</a></li>
-                        <li><a href="about" >Об нас</a></li>
+                        
                         <li><a href="home" >Корпоративный сайт</a></li>
                         <li> 
                             <sec:authorize access="isAuthenticated()">
@@ -69,22 +69,14 @@
 
             <div class="row">
                 <div class="col-md-1"></div>
-                <div class="col-md-10"  ng-controller="ControllerReserv as ctrl">
+                <div class="col-md-10"  ng-controller="ControllerReserv as ctrl">       
+                    <h4 class="text-center"><strong>Забронируйте себе номер прямо сейчас!</strong></h4>
 
-
-
-                    <h4 class="text-center">Забронируйте себе номер прямо сейчас!</h4>
-
-                    <h4>Правила бронирования номеров отеля.</h4>
-
-                    </p>Цены на услуги отеля и спецпредложения являются публичной офертой. Оферта может быть предоставлена или отозвана в любое время без специального уведомления.
-                    В связи с тем, что в отеле все номера имеют небольшие отличия в своей категории, выбрав номер и оформив заявку на бронирование в письменной форме, он-лайн или по телефону, клиенты соглашаются с указанными в заявке сроками заезда и категорией номера, условиями бронирования и не могут без согласия администрации отеля, просить об изменении выбранных условий временного проживания.</p>
-                    <h4>Условия гарантированного бронирования</h4>
-                    <p>Как правило, производится гарантированное бронирование. Для гарантии Вашей брони предусмотрены следующие варианты:
-                        1. Оплата первых суток проживания. Вы можете оплатить стоимость одних или более суток проживания в офисе компании по адресу: Алматы, ул. Розыбакиева, 72а, салон 50.
-                        2. Гарантийное письмо от компании. Для корпоративных клиентов гостиницы достаточно отправить в отель заявку на бронирование в виде гарантийного письма. Гарантийное письмо должно содержать информацию о категории номера, дате прибытия, дате убытия, фамилии и имени гостя (гостей), контактную информацию по бронированию, а также текст о гарантии брони, реквизиты компании, подписи руководителя предприятия и главного бухгалтера. Пример текста заявки на гарантированное бронирование номера в гостинице: В отдел бронирования гостиницы “Рейкьявик” || Просим забронировать номер категории «одноместный стандартный» для г-на Иванова И.И. Дата прибытия: (число) (месяц) (год), дата отъезда: (число) (месяц) (год). Способ оплаты: (наличные/безналичный расчет/кредитная карта). В случае несвоевременной аннуляции (позднее, чем 72 часа до указанной в заявке даты заезда, либо незаезда по данной брони) компания (организационная форма)(название компании) гарантирует оплату стоимости 1 суток проживания по указанной брони.</p>
-
-
+                    <h4 class="text-center"><strong>Правила бронирования номеров отеля.</strong></h4>
+                    <p class="text-center"><strong>Гостиничный комплекс предоставляет номера различной комфортабельности, от "эконом" типа до типа "люкс". </strong></p>
+                    <p class="text-justify"><strong>В гостинице №7 имеется 80 однокомнатных номеров "эконом" типа размером от 12 до 15 м2, 30 номеров одноместные, 50 номеров двухместные. В гостиницах №9 и №311 по 60 номеров, из них 8 номеров типа "люкс" общей площадью 35 м2, номер люкс состоит из двух комнат: кухни и спальни; и 52 номера однокомнатные типа "стандарт" площадью от 20 до 25 м2. В гостинице "Фили" 48 однокомнатных номеров, 4 номера типа "люкс" площадью 30 м2, 44 номера типа "комфорт" площадью от 25 до 30 м2. В гостинице "Космос" 46 номеров типа "комфорт" площадью 25 м2. В гостинице "Комета" 32 номера типа "люкс" площадью 30 м2, в каждом номере две комнаты: спальня и гостиная. В гостинице "Полет" 36 номеров типа "стандарт". 
+В каждом номере "эконом" типа есть холодильник, телевизор и шкаф, а число такой мебели как: односпальная кровать, тумбочка, письменный стол, стул, торшер меняется от числа проживающих в номере (одноместный или двухместный). Начиная с номеров типа "стандарт" в номере может проживать как один человек, так и семейная пара.  В номере стандартного типа имеется кровать, две прикроватные тумбочки, комод, на котором находится телевизор, шкаф, письменный стол со стулом, холодильник, кондиционер, обогреватель, телефон, DVD магнитофон, видеомагнитофон, ковровое покрытие. В номере типа "комфорт", помимо выше перечисленной мебели номера "стандарт", имеется кресло с журнальным столиком, обеденный стол с одним стулом (второй стул добавляется при проживании семейной пары), специальная тумбочка для телевизора, DVD магнитофона и видеомагнитофона. Номера типа "люкс" делятся на три вида: одна большая комната, представляющая из себя спальню с гостиной, две комнаты (спальня и гостиная) и две комнаты (спальня и кухня). Первые два вида номеров "люкс" содержат мебель  и оборудование лучшего качества. В номере "люкс" третьего вида, спальня оборудована как номер типа "стандарт", (но мебель и оборудование лучше).
+                        </strong></p>
                     <div ng-controller="ControllerNomer as nomerctrl" >
                         <label >Тип номера</label> 
                         <div ng-controller="ControllerTN as depctrl">
@@ -101,22 +93,23 @@
                         </div>
 
 
-
+                        <div>
                         <label >Дата заезда</label>
                         <input type="date" name="dateIn"  ng-model="nomerctrl.data.dateb"  class="form-control"  >
                         <label >Дата выезда</label>
                         <input type="date" ng-model="nomerctrl.data.datee" class="form-control " name="dateOut"  >
                         <p></p>
-                        <button ng-click="nomerctrl.fetchFreeU(nomerctrl.data)" class="btn btn-primary">Проверить наличие свободных номеров</button>
-
+                        <button ng-click="nomerctrl.fetchFreeU()" class="btn btn-primary">Проверить наличие свободных номеров</button>
+                        </div>
+                        
+                        <br>
+                        <br>
+                        
                         <div style="display:{{nomerctrl.block}}">
-                            <p>Список свободных номеров</p>
-
-                            <br>
-                            <br>
-                            <table class="table table-hover">
+                            <h4>Список доступных номеров</h4> 
+                            <table class="table table-bordered">
                                 <thead>
-                                    <tr>
+                                    <tr class="active">
                                         <th>Номер</th>
                                         <th>Гостиница</th>
                                         <th>Тип номера</th>
@@ -124,31 +117,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="e in nomerctrl.units">
+                                    <tr class="active" ng-repeat="e in nomerctrl.nomers">
                                         <td><span ng-bind="e.number"></span></td>
                                         <td><span ng-bind="e.idgostin.name"></span></td>
-                                        <td><span ng-bind="e.typenomerhotel.type + e.typenomerhotel.mest"></span></td>
-
-
+                                        <td><span ng-bind="e.typenomer.type +' '+ e.typenomer.mest"></span></td>
                                         <td>
-                                            <button type="button" ng-click="" 
-                                                    class="btn btn-success custom-width"
-                                                    style=" width: 90px !important;">Забронировать</button>  
-
+                                            <button type="button"  ng-click="nomerctrl.route(e.id)" class="btn btn-success">Забронировать</button>  
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
+                
+                   
 
                         <div style="display:{{nomerctrl.block1}}">
                             <h4>Внутрений вид номера</h4>
                             <div  class="fotorama" >
-                                <img src="resources/images/10.jpg">
-                                <img src="resources/images/11.jpg">
-                                <img src="resources/images/12.jpg">
-                                <img src="resources/images/13.jpg">
+                                <img src="resources/images/0029.jpg">
+                                <img src="resources/images/0016.jpg">
+                                <img src="resources/images/0018.jpg">
+                                <img src="resources/images/0019.jpg">
                             </div>
                             <h4><a name="1"></a>В номере присутвует:</h4>
 
@@ -179,10 +168,10 @@
                         <div style="display:{{nomerctrl.block2}}">
                             <h4>Внутрений вид номера</h4>
                             <div  class="fotorama" >
-                                <img src="resources/images/10.jpg">
-                                <img src="resources/images/11.jpg">
-                                <img src="resources/images/12.jpg">
-                                <img src="resources/images/13.jpg">
+                                <img src="resources/images/0020.jpg">
+                                <img src="resources/images/0021.jpg">
+                                <img src="resources/images/0028.jpg">
+                                <img src="resources/images/0029.jpg">
                             </div>
                             <h4><a name="1"></a>В номере присутвует:</h4>
 
@@ -211,10 +200,10 @@
                         <div style="display:{{nomerctrl.block3}}">
                             <h4>Внутрений вид номера</h4>
                             <div  class="fotorama" >
-                                <img src="resources/images/10.jpg">
-                                <img src="resources/images/11.jpg">
-                                <img src="resources/images/12.jpg">
-                                <img src="resources/images/13.jpg">
+                                <img src="resources/images/0030.jpg">
+                                <img src="resources/images/0031.jpg">
+                                <img src="resources/images/0030.jpg">
+                                <img src="resources/images/0026.jpg">
                             </div>
                             <h4><a name="1"></a>В номере присутвует:</h4>
 
@@ -239,10 +228,10 @@
                         <div style="display:{{nomerctrl.block4}}">
                             <h4>Внутрений вид номера</h4>
                             <div  class="fotorama" >
-                                <img src="resources/images/10.jpg">
-                                <img src="resources/images/11.jpg">
-                                <img src="resources/images/12.jpg">
-                                <img src="resources/images/13.jpg">
+                                <img src="resources/images/0032.jpg">
+                                <img src="resources/images/0027.jpg">
+                                <img src="resources/images/0020.jpg">
+                              
                             </div>
                             <h4><a name="1"></a>В номере присутвует:</h4>
 
@@ -282,6 +271,7 @@
 
         </div>
         <!-- Modules -->
+         <script src="resources/js/helpfunction/FileSaver.js"></script>
         <script src="resources/js/app/hotels-app.js"></script>
         <!-- Service -->
         <script src="resources/js/service/reservation-service.js"></script>
@@ -293,7 +283,7 @@
         <script src="resources/js/controller/typenom-controller.js"></script>
         <script src="resources/js/controller/hotels-controller.js"></script> 
         <script src="resources/js/controller/nomer-controller.js"></script>
-
+  <script src="resources/js/module/json-export-excel.js"></script> 
 
     </body>
 </html>

@@ -25,14 +25,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class DolgnostRepositoryImpl implements DolgnostRepository {
      @PersistenceContext
     private EntityManager em;
+     
+    @Override 
     public List<Dolgnost> findAll() {
        return em.createNamedQuery("Dolgnost.findAll").getResultList();
     }
 
+    @Override
      public List<Dolgnost> findAllWithDetails() {
         return em.createNamedQuery("Dolgnost.findAllWithDetail").getResultList();
     }
 
+     
+     @Override
     public Dolgnost save(Dolgnost nomer) {
           if (nomer.getId() == null) {
             em.persist(nomer);
@@ -42,15 +47,20 @@ public class DolgnostRepositoryImpl implements DolgnostRepository {
         return nomer;
     }
 
+    
+    @Override
     public void delete(Dolgnost nomer) {
           Dolgnost mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
     
+    
+    @Override
     public Dolgnost update(Dolgnost hot) {
          return em.merge(hot);
     }
 
+    @Override
     public Dolgnost create(Dolgnost hot) {
        em.persist(hot);
         return hot;
